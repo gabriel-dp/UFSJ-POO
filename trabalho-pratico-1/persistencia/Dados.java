@@ -1,25 +1,25 @@
 package persistencia;
 
 public class Dados {
-    private Persistente clientes;
-    private Persistente processos;
-    private Persistente consultas;
+    private Persistente veiculos;
+    private Persistente procedimentos;
+    private Persistente servicos;
 
     public Dados() {
-        this.clientes = new Persistente();
-        this.processos = new Persistente();
-        this.consultas = new Persistente();
+        this.veiculos = new Persistente();
+        this.procedimentos = new Persistente();
+        this.servicos = new Persistente();
     }
 
-    public Persistente getClientes() {
-        return this.clientes;
+    public Persistente getVeiculos() {
+        return this.veiculos;
     }
 
-    public Persistente getProcessos() {
-        return this.processos;
+    public Persistente getProcedimentos() {
+        return this.procedimentos;
     }
 
-    public Persistente getConsultas() {
-        return this.consultas;
+    public Persistente getServicos() {
+        return this.servicos;
     }
 }

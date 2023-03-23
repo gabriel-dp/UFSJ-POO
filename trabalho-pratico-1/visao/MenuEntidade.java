@@ -6,7 +6,7 @@ public class MenuEntidade extends Menu {
     private Persistente entidadePersistente;
 
     public MenuEntidade(Persistente entidadePersistente) {
-        super("Entidade", new String[] { "Voltar", "Inserir", "Alterar", "Apagar", "Consultar Id" });
+        super("Entidade", new String[] { "Voltar", "Inserir", "Alterar", "Apagar", "Consultar Id", "Ver todos" });
         this.entidadePersistente = entidadePersistente;
     }
 
@@ -28,6 +28,9 @@ public class MenuEntidade extends Menu {
 
                     break;
                 case 4:
+
+                    break;
+                case 5:
 
                     break;
                 default:
