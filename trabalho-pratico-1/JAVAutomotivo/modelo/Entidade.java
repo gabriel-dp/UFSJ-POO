@@ -11,12 +11,9 @@ public abstract class Entidade {
         return this.id;
     }
 
-    public void setId(int newId) {
-        this.id = newId;
+    public void setId(int novoId) {
+        this.id = novoId;
     }
 
-    @Override
-    public String toString() {
-        return String.format("Id da Entidade = %d", this.id);
-    }
+    abstract public String toString();
 }

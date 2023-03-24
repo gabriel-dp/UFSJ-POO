@@ -19,13 +19,13 @@ public class Persistente {
         this.entidades.add(entidade);
     }
 
-    public void remove(Entidade entidade) {
-        this.entidades.remove(entidade);
-    }
-
     public void altera(Entidade antiga, Entidade nova) {
         int index = this.entidades.indexOf(antiga);
         this.entidades.set(index, nova);
+    }
+
+    public void remove(Entidade entidade) {
+        this.entidades.remove(entidade);
     }
 
     public Entidade buscaId(int id) throws IdException {
@@ -35,6 +35,10 @@ public class Persistente {
             }
         }
         throw new IdException(id);
+    }
+
+    public String toString() {
+        return "a";
     }
 
 }

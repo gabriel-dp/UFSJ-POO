@@ -18,8 +18,16 @@ public class Manutencao extends Entidade {
         return this.veiculo;
     }
 
+    public void setVeiculo(Veiculo novoVeiculo) {
+        this.veiculo = novoVeiculo;
+    }
+
     public ArrayList<Servico> getServicos() {
         return this.servicos;
+    }
+
+    public void setServicos(ArrayList<Servico> novosServicos) {
+        this.servicos = novosServicos;
     }
 
     public String toString() {

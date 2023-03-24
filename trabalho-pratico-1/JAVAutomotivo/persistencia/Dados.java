@@ -15,11 +15,23 @@ public class Dados {
         return this.veiculos;
     }
 
+    public void setVeiculos(Persistente novosVeiculos) {
+        this.veiculos = novosVeiculos;
+    }
+
     public Persistente getProcedimentos() {
         return this.procedimentos;
     }
 
+    public void setProcedimentos(Persistente novosProcedimentos) {
+        this.procedimentos = novosProcedimentos;
+    }
+
     public Persistente getManutencoes() {
         return this.manutencoes;
+    }
+
+    public void setManutencoes(Persistente novasManutencoes) {
+        this.manutencoes = novasManutencoes;
     }
 }

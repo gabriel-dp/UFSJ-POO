@@ -47,11 +47,11 @@ public class MenuVeiculos extends MenuEntidade {
             Entidade antigoVeiculo = veiculos.buscaId(id);
 
             System.out.print("Modelo: ");
-            String modelo = scan.next();
+            String modelo = scan.nextLine();
             System.out.print("Placa: ");
-            String placa = scan.next();
+            String placa = scan.nextLine();
             System.out.print("Nome do Cliente: ");
-            String nomeCliente = scan.next();
+            String nomeCliente = scan.nextLine();
 
             Veiculo novoVeiculo = new Veiculo(id, modelo, placa, nomeCliente);
             veiculos.altera(antigoVeiculo, novoVeiculo);
