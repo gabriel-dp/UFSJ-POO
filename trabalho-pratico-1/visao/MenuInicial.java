@@ -8,7 +8,7 @@ public class MenuInicial extends Menu {
     private Dados dados;
 
     public MenuInicial(Dados dados) {
-        super("Inicial", new String[] { "Sair", "Veiculo", "Procedimento", "Servico" });
+        super("Inicial", new String[] { "Sair", "Veículos", "Procedimentos", "Manutenções" });
         this.dados = dados;
     }
 
@@ -27,7 +27,7 @@ public class MenuInicial extends Menu {
                     new MenuProcedimentos(dados.getProcedimentos()).menu();
                     break;
                 case 3:
-                    // new MenuManutencao(dados.getServicos()).menu();
+                    new MenuManutencoes(dados.getManutencoes(), dados.getVeiculos(), dados.getProcedimentos()).menu();
                     break;
                 default:
                     System.out.println("Opção inválida");

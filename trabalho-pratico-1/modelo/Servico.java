@@ -5,11 +5,6 @@ public class Servico {
     private Procedimento procedimento;
     private int quantidade;
 
-    public Servico(Procedimento procedimento) {
-        this.procedimento = procedimento;
-        this.quantidade = 1;
-    }
-
     public Servico(Procedimento procedimento, int quantidade) {
         this.procedimento = procedimento;
         this.quantidade = quantidade;

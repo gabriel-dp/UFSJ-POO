@@ -4,17 +4,17 @@ import java.util.ArrayList;
 
 public class Manutencao extends Entidade {
 
-    private Veiculo cliente;
+    private Veiculo veiculo;
     private ArrayList<Servico> servicos;
 
-    public Manutencao(int id, Veiculo cliente, ArrayList<Servico> servicos) {
+    public Manutencao(int id, Veiculo veiculo, ArrayList<Servico> servicos) {
         super(id);
-        this.cliente = cliente;
+        this.veiculo = veiculo;
         this.servicos = servicos;
     }
 
-    public Veiculo getCliente() {
-        return this.cliente;
+    public Veiculo getVeiculo() {
+        return this.veiculo;
     }
 
     public ArrayList<Servico> getServicos() {

@@ -3,12 +3,12 @@ package persistencia;
 public class Dados {
     private Persistente veiculos;
     private Persistente procedimentos;
-    private Persistente servicos;
+    private Persistente manutencoes;
 
     public Dados() {
         this.veiculos = new Persistente();
         this.procedimentos = new Persistente();
-        this.servicos = new Persistente();
+        this.manutencoes = new Persistente();
     }
 
     public Persistente getVeiculos() {
@@ -19,7 +19,7 @@ public class Dados {
         return this.procedimentos;
     }
 
-    public Persistente getServicos() {
-        return this.servicos;
+    public Persistente getManutencoes() {
+        return this.manutencoes;
     }
 }
