@@ -28,7 +28,7 @@ public class Procedimento extends Entidade {
     }
 
     public String toString() {
-        return String.format("Nome do procedimento = %s | Valor = %.2f", this.nomeProcedimento, this.valor);
+        return String.format("Nome = %s | Valor = %.2f", this.nomeProcedimento, this.valor);
     }
 
 }

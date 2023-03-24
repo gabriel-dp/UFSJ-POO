@@ -23,7 +23,8 @@ public class Servico {
     }
 
     public String toString() {
-        return String.format("Procedimento = {\n%s\n}\nQuantidade = %d", this.procedimento.toString(), this.quantidade);
+        return String.format("Procedimento = { %s } | Quantidade = %d", this.procedimento.toString(),
+                this.quantidade);
     }
 
 }

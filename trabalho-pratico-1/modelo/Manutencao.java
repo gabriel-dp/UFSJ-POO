@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.lang.StringBuilder;
 
 public class Manutencao extends Entidade {
 
@@ -19,6 +20,17 @@ public class Manutencao extends Entidade {
 
     public ArrayList<Servico> getServicos() {
         return this.servicos;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(veiculo.toString() + "\n");
+        sb.append("Servicos: [\n");
+        for (Servico servico : servicos) {
+            sb.append("\t" + servico.toString() + "\n");
+        }
+        sb.append("]");
+        return sb.toString();
     }
 
 }
