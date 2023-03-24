@@ -1,4 +1,4 @@
-# UFSJ Object-Oriented-Programming (Programação Orientada a Objetos)
+# UFSJ Object-Oriented-Programming
 
 All exercise lists, practical works and random codes created for better Java learning with professor Matheus Viana.
 
