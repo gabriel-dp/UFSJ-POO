@@ -90,7 +90,7 @@ public class MenuVeiculos extends MenuEntidade {
     }
 
     public void verTodosEntidade() {
-        System.out.println("Todos os Veículos");
+        System.out.println("Todos os Veículos = " + this.veiculos.getEntidades().size());
 
         for (Entidade veiculo : this.veiculos.getEntidades()) {
             System.out.printf("%d { %s }\n", veiculo.getId(), veiculo.toString());

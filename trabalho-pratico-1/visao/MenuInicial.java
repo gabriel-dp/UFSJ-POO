@@ -24,7 +24,7 @@ public class MenuInicial extends Menu {
                     new MenuVeiculos(dados.getVeiculos()).menu();
                     break;
                 case 2:
-                    // new MenuProcedimentos(dados.getProcedimentos()).menu();
+                    new MenuProcedimentos(dados.getProcedimentos()).menu();
                     break;
                 case 3:
                     // new MenuManutencao(dados.getServicos()).menu();
