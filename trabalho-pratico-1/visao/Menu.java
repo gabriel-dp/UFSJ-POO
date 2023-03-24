@@ -15,7 +15,7 @@ public abstract class Menu {
     }
 
     public int getOpcao() {
-        System.out.println(String.format("\n\n=== MENU %s ===", titulo));
+        System.out.println(String.format("\n\n=== Menu %s ===", titulo));
         for (int i = 0; i < opcoes.length; i++) {
             System.out.println(String.format("(%d) %s", i, opcoes[i]));
         }

@@ -11,6 +11,10 @@ public class Persistente {
         this.entidades = new ArrayList<Entidade>();
     }
 
+    public ArrayList<Entidade> getEntidades() {
+        return this.entidades;
+    }
+
     public void insere(Entidade entidade) {
         this.entidades.add(entidade);
     }
@@ -19,7 +23,7 @@ public class Persistente {
         this.entidades.remove(entidade);
     }
 
-    public void substitui(Entidade antiga, Entidade nova) {
+    public void altera(Entidade antiga, Entidade nova) {
         int index = this.entidades.indexOf(antiga);
         this.entidades.set(index, nova);
     }
@@ -32,4 +36,5 @@ public class Persistente {
         }
         throw new IdException(id);
     }
+
 }

@@ -27,4 +27,8 @@ public class Servico {
         this.quantidade = novaQuantidade;
     }
 
+    public String toString() {
+        return String.format("Procedimento = {\n%s\n}\nQuantidade = %d", this.procedimento.toString(), this.quantidade);
+    }
+
 }

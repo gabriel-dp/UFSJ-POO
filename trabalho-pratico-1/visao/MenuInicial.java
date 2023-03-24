@@ -1,6 +1,7 @@
 package visao;
 
 import persistencia.*;
+import visao.entidades.*;
 
 public class MenuInicial extends Menu {
 
@@ -20,13 +21,13 @@ public class MenuInicial extends Menu {
                     System.out.println("Programa encerrado");
                     break;
                 case 1:
-                    new MenuEntidade(dados.getVeiculos()).menu();
+                    new MenuVeiculos(dados.getVeiculos()).menu();
                     break;
                 case 2:
-                    new MenuEntidade(dados.getProcedimentos()).menu();
+                    // new MenuProcedimentos(dados.getProcedimentos()).menu();
                     break;
                 case 3:
-                    new MenuEntidade(dados.getServicos()).menu();
+                    // new MenuManutencao(dados.getServicos()).menu();
                     break;
                 default:
                     System.out.println("Opção inválida");

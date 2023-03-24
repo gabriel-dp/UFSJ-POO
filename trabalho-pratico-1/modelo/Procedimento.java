@@ -2,21 +2,21 @@ package modelo;
 
 public class Procedimento extends Entidade {
 
-    private String nome;
+    private String nomeProcedimento;
     private double valor;
 
-    public Procedimento(String nome, double valor) {
-        super(1);
-        this.nome = nome;
+    public Procedimento(int id, String nomeProcedimento, double valor) {
+        super(id);
+        this.nomeProcedimento = nomeProcedimento;
         this.valor = valor;
     }
 
-    public String getNome() {
-        return this.nome;
+    public String getNomeProcedimento() {
+        return this.nomeProcedimento;
     }
 
-    public void setNome(String novoNome) {
-        this.nome = novoNome;
+    public void setNomeProcedimento(String novoNomeProcedimento) {
+        this.nomeProcedimento = novoNomeProcedimento;
     }
 
     public double getValor() {
@@ -25,6 +25,10 @@ public class Procedimento extends Entidade {
 
     public void setValor(double novoValor) {
         this.valor = novoValor;
+    }
+
+    public String toString() {
+        return String.format("Nome do procedimento = %s\nValor = %.2f", this.nomeProcedimento, this.valor);
     }
 
 }

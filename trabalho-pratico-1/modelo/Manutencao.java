@@ -7,8 +7,8 @@ public class Manutencao extends Entidade {
     private Veiculo cliente;
     private ArrayList<Servico> servicos;
 
-    public Manutencao(Veiculo cliente, ArrayList<Servico> servicos) {
-        super(1);
+    public Manutencao(int id, Veiculo cliente, ArrayList<Servico> servicos) {
+        super(id);
         this.cliente = cliente;
         this.servicos = servicos;
     }
