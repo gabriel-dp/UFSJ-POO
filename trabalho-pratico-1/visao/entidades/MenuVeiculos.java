@@ -17,17 +17,18 @@ public class MenuVeiculos extends MenuEntidade {
 
         System.out.print("Id: ");
         int id = scan.nextInt();
+        scan.nextLine();
 
         try {
             veiculos.buscaId(id);
             System.out.println("\nId já existente");
         } catch (IdException e) {
             System.out.print("Modelo: ");
-            String modelo = scan.next();
+            String modelo = scan.nextLine();
             System.out.print("Placa: ");
-            String placa = scan.next();
+            String placa = scan.nextLine();
             System.out.print("Nome do Cliente: ");
-            String nomeCliente = scan.next();
+            String nomeCliente = scan.nextLine();
 
             Veiculo novoVeiculo = new Veiculo(id, modelo, placa, nomeCliente);
             this.veiculos.insere(novoVeiculo);
@@ -40,6 +41,7 @@ public class MenuVeiculos extends MenuEntidade {
 
         System.out.print("Id: ");
         int id = scan.nextInt();
+        scan.nextLine();
 
         try {
             Entidade antigoVeiculo = veiculos.buscaId(id);

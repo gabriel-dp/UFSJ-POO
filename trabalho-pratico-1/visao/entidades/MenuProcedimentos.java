@@ -23,7 +23,7 @@ public class MenuProcedimentos extends MenuEntidade {
             System.out.println("\nId já existente");
         } catch (IdException e) {
             System.out.print("Nome: ");
-            String nome = scan.next();
+            String nome = scan.nextLine();
             System.out.print("Valor: ");
             Double valor = scan.nextDouble();
 
@@ -43,7 +43,7 @@ public class MenuProcedimentos extends MenuEntidade {
             Entidade antigoProcedimento = procedimentos.buscaId(id);
 
             System.out.print("Nome: ");
-            String nome = scan.next();
+            String nome = scan.nextLine();
             System.out.print("Valor: ");
             Double valor = scan.nextDouble();
 
@@ -61,6 +61,7 @@ public class MenuProcedimentos extends MenuEntidade {
 
         System.out.print("Id: ");
         int id = scan.nextInt();
+        scan.nextLine();
 
         try {
             Entidade procedimento = procedimentos.buscaId(id);
@@ -76,6 +77,7 @@ public class MenuProcedimentos extends MenuEntidade {
 
         System.out.print("Id: ");
         int id = scan.nextInt();
+        scan.nextLine();
 
         try {
             Entidade procedimento = procedimentos.buscaId(id);
