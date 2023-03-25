@@ -1,6 +1,7 @@
 package persistencia;
 
 import modelo.*;
+
 import java.util.ArrayList;
 import java.lang.StringBuilder;
 
@@ -14,6 +15,10 @@ public class Persistente {
 
     public ArrayList<Entidade> getEntidades() {
         return this.entidades;
+    }
+
+    public void setEntidades(ArrayList<Entidade> novasEntidades) {
+        this.entidades = novasEntidades;
     }
 
     public void insere(Entidade entidade) {
@@ -42,7 +47,7 @@ public class Persistente {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("Total = %d\n", this.entidades.size()));
         for (Entidade entidade : entidades) {
-            sb.append(String.format("%s\n", entidade.toString()));
+            sb.append(String.format("%d { %s }\n", entidade.getId(), entidade.toString()));
         }
         return sb.toString();
     }

@@ -8,12 +8,12 @@ public abstract class Menu {
     private String titulo;
     private String[] opcoes;
 
-    Scanner scan = new Scanner(System.in);
-
     public Menu(String titulo, String[] opcoes) {
         this.titulo = titulo;
         this.opcoes = opcoes;
     }
+
+    protected Scanner scan = new Scanner(System.in);
 
     protected int getInteger() {
         int value;
@@ -50,7 +50,7 @@ public abstract class Menu {
         }
 
         System.out.print("Opção escolhida: ");
-        int opcao = getInteger();
+        int opcao = this.getInteger();
         System.out.print("\n");
 
         return opcao;

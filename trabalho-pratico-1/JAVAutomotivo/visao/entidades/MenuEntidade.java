@@ -2,12 +2,9 @@ package visao.entidades;
 
 import visao.*;
 
-import java.util.Scanner;
 import java.util.InputMismatchException;
 
 public abstract class MenuEntidade extends Menu {
-
-    Scanner scan = new Scanner(System.in);
 
     public MenuEntidade(String titulo) {
         super(titulo, new String[] { "Voltar", "Inserir", "Alterar", "Apagar", "Buscar Id", "Ver todos" });
@@ -28,7 +25,7 @@ public abstract class MenuEntidade extends Menu {
         do {
             try {
                 System.out.print("Id: ");
-                id = scan.nextInt();
+                id = this.scan.nextInt();
                 scan.nextLine();
                 return id;
             } catch (InputMismatchException e) {

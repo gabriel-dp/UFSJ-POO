@@ -21,13 +21,14 @@ public class MenuInicial extends Menu {
                     System.out.println("Programa encerrado");
                     break;
                 case 1:
-                    new MenuVeiculos(dados.getVeiculos()).menu();
+                    new MenuVeiculos(this.dados.getVeiculos()).menu();
                     break;
                 case 2:
-                    new MenuProcedimentos(dados.getProcedimentos()).menu();
+                    new MenuProcedimentos(this.dados.getProcedimentos()).menu();
                     break;
                 case 3:
-                    new MenuManutencoes(dados.getManutencoes(), dados.getVeiculos(), dados.getProcedimentos()).menu();
+                    new MenuManutencoes(this.dados.getManutencoes(), this.dados.getVeiculos(),
+                            this.dados.getProcedimentos()).menu();
                     break;
                 default:
                     System.out.println("Opção inválida");

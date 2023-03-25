@@ -14,6 +14,10 @@ public class Servico {
         return this.procedimento;
     }
 
+    public void setProcedimento(Procedimento novoProcedimento) {
+        this.procedimento = novoProcedimento;
+    }
+
     public int getQuantidade() {
         return this.quantidade;
     }

@@ -12,6 +12,17 @@ public class MenuVeiculos extends MenuEntidade {
         this.veiculos = veiculos;
     }
 
+    private Veiculo getVeiculo(int id) {
+        System.out.print("Modelo: ");
+        String modelo = scan.nextLine();
+        System.out.print("Placa: ");
+        String placa = scan.nextLine();
+        System.out.print("Nome do Cliente: ");
+        String nomeCliente = scan.nextLine();
+
+        return new Veiculo(id, modelo, placa, nomeCliente);
+    }
+
     protected void insereEntidade() {
         System.out.println("Adicionar veículo");
 
@@ -19,15 +30,8 @@ public class MenuVeiculos extends MenuEntidade {
         try {
             veiculos.buscaId(id);
             System.out.println("\nId já existente");
-        } catch (IdException e) {
-            System.out.print("Modelo: ");
-            String modelo = scan.nextLine();
-            System.out.print("Placa: ");
-            String placa = scan.nextLine();
-            System.out.print("Nome do Cliente: ");
-            String nomeCliente = scan.nextLine();
-
-            Veiculo novoVeiculo = new Veiculo(id, modelo, placa, nomeCliente);
+        } catch (IdException _erro) {
+            Veiculo novoVeiculo = this.getVeiculo(id);
             this.veiculos.insere(novoVeiculo);
             System.out.println("\nVeículo adicionado com sucesso");
         }
@@ -38,21 +42,12 @@ public class MenuVeiculos extends MenuEntidade {
 
         int id = this.getId();
         try {
-            Entidade antigoVeiculo = veiculos.buscaId(id);
-
-            System.out.print("Modelo: ");
-            String modelo = scan.nextLine();
-            System.out.print("Placa: ");
-            String placa = scan.nextLine();
-            System.out.print("Nome do Cliente: ");
-            String nomeCliente = scan.nextLine();
-
-            Veiculo novoVeiculo = new Veiculo(id, modelo, placa, nomeCliente);
-            veiculos.altera(antigoVeiculo, novoVeiculo);
-
+            Entidade antigoVeiculo = this.veiculos.buscaId(id);
+            Veiculo novoVeiculo = this.getVeiculo(id);
+            this.veiculos.altera(antigoVeiculo, novoVeiculo);
             System.out.println("\nVeículo alterado com sucesso");
-        } catch (IdException e) {
-            System.out.println("\nId não encontrado");
+        } catch (IdException erro) {
+            System.out.println(erro.getMessage());
         }
     }
 
@@ -61,11 +56,11 @@ public class MenuVeiculos extends MenuEntidade {
 
         int id = this.getId();
         try {
-            Entidade veiculo = veiculos.buscaId(id);
-            veiculos.remove(veiculo);
+            Entidade veiculo = this.veiculos.buscaId(id);
+            this.veiculos.remove(veiculo);
             System.out.println("\nVeículo deletado com sucesso");
-        } catch (IdException e) {
-            System.out.println("\nId não encontrado");
+        } catch (IdException erro) {
+            System.out.println(erro.getMessage());
         }
     }
 
@@ -74,10 +69,11 @@ public class MenuVeiculos extends MenuEntidade {
 
         int id = this.getId();
         try {
-            Entidade veiculo = veiculos.buscaId(id);
+            Entidade veiculo = this.veiculos.buscaId(id);
+
             System.out.println(veiculo.toString());
-        } catch (IdException e) {
-            System.out.println("\nId não encontrado");
+        } catch (IdException erro) {
+            System.out.println(erro.getMessage());
         }
     }
 

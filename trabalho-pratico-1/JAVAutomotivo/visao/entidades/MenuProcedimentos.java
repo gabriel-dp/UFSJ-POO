@@ -12,6 +12,15 @@ public class MenuProcedimentos extends MenuEntidade {
         this.procedimentos = procedimentos;
     }
 
+    private Procedimento getProcedimento(int id) {
+        System.out.print("Nome: ");
+        String nome = scan.nextLine();
+        System.out.print("Valor: ");
+        Double valor = this.getDouble();
+
+        return new Procedimento(id, nome, valor);
+    }
+
     protected void insereEntidade() {
         System.out.println("Adicionar procedimento");
 
@@ -19,13 +28,8 @@ public class MenuProcedimentos extends MenuEntidade {
         try {
             procedimentos.buscaId(id);
             System.out.println("\nId já existente");
-        } catch (IdException e) {
-            System.out.print("Nome: ");
-            String nome = scan.nextLine();
-            System.out.print("Valor: ");
-            Double valor = this.getDouble();
-
-            Procedimento novoProcedimento = new Procedimento(id, nome, valor);
+        } catch (IdException _e) {
+            Procedimento novoProcedimento = getProcedimento(id);
             this.procedimentos.insere(novoProcedimento);
             System.out.println("\nProcedimento adicionado com sucesso");
         }
@@ -37,18 +41,11 @@ public class MenuProcedimentos extends MenuEntidade {
         int id = this.getId();
         try {
             Entidade antigoProcedimento = procedimentos.buscaId(id);
-
-            System.out.print("Nome: ");
-            String nome = scan.nextLine();
-            System.out.print("Valor: ");
-            Double valor = this.getDouble();
-
-            Procedimento novoProcedimento = new Procedimento(id, nome, valor);
+            Procedimento novoProcedimento = getProcedimento(id);
             procedimentos.altera(antigoProcedimento, novoProcedimento);
-
             System.out.println("\nProcedimento alterado com sucesso");
-        } catch (IdException e) {
-            System.out.println("\nId não encontrado");
+        } catch (IdException erro) {
+            System.out.println(erro.getMessage());
         }
     }
 
@@ -60,8 +57,8 @@ public class MenuProcedimentos extends MenuEntidade {
             Entidade procedimento = procedimentos.buscaId(id);
             procedimentos.remove(procedimento);
             System.out.println("\nProcedimento deletado com sucesso");
-        } catch (IdException e) {
-            System.out.println("\nId não encontrado");
+        } catch (IdException erro) {
+            System.out.println(erro.getMessage());
         }
     }
 
@@ -72,8 +69,8 @@ public class MenuProcedimentos extends MenuEntidade {
         try {
             Entidade procedimento = procedimentos.buscaId(id);
             System.out.println(procedimento.toString());
-        } catch (IdException e) {
-            System.out.println("\nId não encontrado");
+        } catch (IdException erro) {
+            System.out.println(erro.getMessage());
         }
     }
 

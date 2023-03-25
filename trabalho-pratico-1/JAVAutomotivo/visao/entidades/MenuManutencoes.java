@@ -2,6 +2,7 @@ package visao.entidades;
 
 import modelo.*;
 import persistencia.*;
+
 import java.util.ArrayList;
 
 public class MenuManutencoes extends MenuEntidade {
@@ -22,15 +23,16 @@ public class MenuManutencoes extends MenuEntidade {
 
         do {
             try {
+                System.out.print("Procedimento ");
                 int idProcedimento = this.getId();
-                Procedimento procedimento = (Procedimento) procedimentos.buscaId(idProcedimento);
+                Procedimento procedimento = (Procedimento) this.procedimentos.buscaId(idProcedimento);
 
                 System.out.print("Quantidade: ");
                 int quantidade = this.getInteger();
 
                 novosServicos.add(new Servico(procedimento, quantidade));
-            } catch (IdException erroIdProcedimento) {
-                System.out.println("Procedimento não encontrado");
+            } catch (IdException erro) {
+                System.out.println(erro.getMessage());
                 break;
             }
         } while (true);
@@ -38,13 +40,13 @@ public class MenuManutencoes extends MenuEntidade {
         return novosServicos;
     }
 
-    private Veiculo recebeVeiculo() {
+    private Veiculo getVeiculo() {
         try {
+            System.out.print("Veículo ");
             int idVeiculo = this.getId();
-
-            return ((Veiculo) veiculos.buscaId(idVeiculo));
-        } catch (IdException erroIdVeiculo) {
-            System.out.println("Veículo não encontrado");
+            return ((Veiculo) this.veiculos.buscaId(idVeiculo));
+        } catch (IdException erro) {
+            System.out.println(erro.getMessage());
             return null;
         }
     }
@@ -54,10 +56,10 @@ public class MenuManutencoes extends MenuEntidade {
 
         int idManutencao = this.getId();
         try {
-            manutencoes.buscaId(idManutencao);
+            this.manutencoes.buscaId(idManutencao);
             System.out.println("\nId já existente");
-        } catch (IdException erroIdManutencao) {
-            Veiculo veiculo = recebeVeiculo();
+        } catch (IdException _erro) {
+            Veiculo veiculo = this.getVeiculo();
             if (veiculo == null)
                 return;
             ArrayList<Servico> servicos = this.criaServicos();
@@ -75,9 +77,9 @@ public class MenuManutencoes extends MenuEntidade {
 
         int id = this.getId();
         try {
-            Entidade antigaManutencao = manutencoes.buscaId(id);
+            Entidade antigaManutencao = this.manutencoes.buscaId(id);
 
-            Veiculo novoVeiculo = recebeVeiculo();
+            Veiculo novoVeiculo = this.getVeiculo();
             if (novoVeiculo == null)
                 return;
             ArrayList<Servico> novosServicos = this.criaServicos();
@@ -85,11 +87,11 @@ public class MenuManutencoes extends MenuEntidade {
                 return;
 
             Manutencao novaManutencao = new Manutencao(id, novoVeiculo, novosServicos);
-            manutencoes.altera(antigaManutencao, novaManutencao);
+            this.manutencoes.altera(antigaManutencao, novaManutencao);
 
             System.out.println("\nManutenção alterada com sucesso");
-        } catch (IdException e) {
-            System.out.println("\nId não encontrado");
+        } catch (IdException erro) {
+            System.out.println(erro.getMessage());
         }
     }
 
@@ -98,11 +100,11 @@ public class MenuManutencoes extends MenuEntidade {
 
         int id = this.getId();
         try {
-            Entidade manutencao = manutencoes.buscaId(id);
-            manutencoes.remove(manutencao);
+            Entidade manutencao = this.manutencoes.buscaId(id);
+            this.manutencoes.remove(manutencao);
             System.out.println("\nManutenção deletada com sucesso");
-        } catch (IdException e) {
-            System.out.println("\nId não encontrado");
+        } catch (IdException erro) {
+            System.out.println(erro.getMessage());
         }
     }
 
@@ -110,11 +112,12 @@ public class MenuManutencoes extends MenuEntidade {
         System.out.println("Busca por Id");
 
         int id = this.getId();
+        this.getInteger();
         try {
-            Entidade manutencao = manutencoes.buscaId(id);
+            Entidade manutencao = this.manutencoes.buscaId(id);
             System.out.println(manutencao.toString());
-        } catch (IdException e) {
-            System.out.println("\nId não encontrado");
+        } catch (IdException erro) {
+            System.out.println(erro.getMessage());
         }
     }
 
