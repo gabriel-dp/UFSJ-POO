@@ -2,6 +2,7 @@ package persistencia;
 
 import modelo.*;
 import java.util.ArrayList;
+import java.lang.StringBuilder;
 
 public class Persistente {
 
@@ -38,7 +39,12 @@ public class Persistente {
     }
 
     public String toString() {
-        return "a";
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("Total = %d\n", this.entidades.size()));
+        for (Entidade entidade : entidades) {
+            sb.append(String.format("%s\n", entidade.toString()));
+        }
+        return sb.toString();
     }
 
 }

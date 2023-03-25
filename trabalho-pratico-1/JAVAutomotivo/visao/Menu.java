@@ -1,6 +1,7 @@
 package visao;
 
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public abstract class Menu {
 
@@ -14,14 +15,42 @@ public abstract class Menu {
         this.opcoes = opcoes;
     }
 
-    public int getOpcao() {
+    protected int getInteger() {
+        int value;
+        do {
+            try {
+                value = scan.nextInt();
+                scan.nextLine();
+                return value;
+            } catch (InputMismatchException e) {
+                scan.nextLine();
+                System.out.print("(Apenas números inteiros): ");
+            }
+        } while (true);
+    }
+
+    protected double getDouble() {
+        double value;
+        do {
+            try {
+                value = scan.nextDouble();
+                scan.nextLine();
+                return value;
+            } catch (InputMismatchException e) {
+                scan.nextLine();
+                System.out.print("(Apenas números): ");
+            }
+        } while (true);
+    }
+
+    protected int getOpcao() {
         System.out.println(String.format("\n\n=== Menu %s ===", titulo));
         for (int i = 0; i < opcoes.length; i++) {
             System.out.println(String.format("(%d) %s", i, opcoes[i]));
         }
 
         System.out.print("Opção escolhida: ");
-        int opcao = scan.nextInt();
+        int opcao = getInteger();
         System.out.print("\n");
 
         return opcao;

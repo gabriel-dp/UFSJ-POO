@@ -12,13 +12,10 @@ public class MenuVeiculos extends MenuEntidade {
         this.veiculos = veiculos;
     }
 
-    public void insereEntidade() {
+    protected void insereEntidade() {
         System.out.println("Adicionar veículo");
 
-        System.out.print("Id: ");
-        int id = scan.nextInt();
-        scan.nextLine();
-
+        int id = this.getId();
         try {
             veiculos.buscaId(id);
             System.out.println("\nId já existente");
@@ -36,13 +33,10 @@ public class MenuVeiculos extends MenuEntidade {
         }
     }
 
-    public void alteraEntidade() {
+    protected void alteraEntidade() {
         System.out.println("Alterar dados do veículo");
 
-        System.out.print("Id: ");
-        int id = scan.nextInt();
-        scan.nextLine();
-
+        int id = this.getId();
         try {
             Entidade antigoVeiculo = veiculos.buscaId(id);
 
@@ -62,12 +56,10 @@ public class MenuVeiculos extends MenuEntidade {
         }
     }
 
-    public void removeEntidade() {
+    protected void removeEntidade() {
         System.out.println("Remover veículo");
 
-        System.out.print("Id: ");
-        int id = scan.nextInt();
-
+        int id = this.getId();
         try {
             Entidade veiculo = veiculos.buscaId(id);
             veiculos.remove(veiculo);
@@ -77,12 +69,10 @@ public class MenuVeiculos extends MenuEntidade {
         }
     }
 
-    public void buscaIdEntidade() {
+    protected void buscaIdEntidade() {
         System.out.println("Busca por Id");
 
-        System.out.print("Id: ");
-        int id = scan.nextInt();
-
+        int id = this.getId();
         try {
             Entidade veiculo = veiculos.buscaId(id);
             System.out.println(veiculo.toString());
@@ -91,12 +81,8 @@ public class MenuVeiculos extends MenuEntidade {
         }
     }
 
-    public void verTodosEntidade() {
-        System.out.println("Todos os Veículos = " + this.veiculos.getEntidades().size());
-
-        for (Entidade veiculo : this.veiculos.getEntidades()) {
-            System.out.printf("%d { %s }\n", veiculo.getId(), veiculo.toString());
-        }
+    protected void verTodosEntidade() {
+        System.out.println(this.veiculos.toString());
     }
 
 }

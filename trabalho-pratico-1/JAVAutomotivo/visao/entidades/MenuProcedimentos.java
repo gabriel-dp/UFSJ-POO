@@ -12,12 +12,10 @@ public class MenuProcedimentos extends MenuEntidade {
         this.procedimentos = procedimentos;
     }
 
-    public void insereEntidade() {
+    protected void insereEntidade() {
         System.out.println("Adicionar procedimento");
 
-        System.out.print("Id: ");
-        int id = scan.nextInt();
-
+        int id = this.getId();
         try {
             procedimentos.buscaId(id);
             System.out.println("\nId já existente");
@@ -25,7 +23,7 @@ public class MenuProcedimentos extends MenuEntidade {
             System.out.print("Nome: ");
             String nome = scan.nextLine();
             System.out.print("Valor: ");
-            Double valor = scan.nextDouble();
+            Double valor = this.getDouble();
 
             Procedimento novoProcedimento = new Procedimento(id, nome, valor);
             this.procedimentos.insere(novoProcedimento);
@@ -33,19 +31,17 @@ public class MenuProcedimentos extends MenuEntidade {
         }
     }
 
-    public void alteraEntidade() {
+    protected void alteraEntidade() {
         System.out.println("Alterar dados do procedimento");
 
-        System.out.print("Id: ");
-        int id = scan.nextInt();
-
+        int id = this.getId();
         try {
             Entidade antigoProcedimento = procedimentos.buscaId(id);
 
             System.out.print("Nome: ");
             String nome = scan.nextLine();
             System.out.print("Valor: ");
-            Double valor = scan.nextDouble();
+            Double valor = this.getDouble();
 
             Procedimento novoProcedimento = new Procedimento(id, nome, valor);
             procedimentos.altera(antigoProcedimento, novoProcedimento);
@@ -56,13 +52,10 @@ public class MenuProcedimentos extends MenuEntidade {
         }
     }
 
-    public void removeEntidade() {
+    protected void removeEntidade() {
         System.out.println("Remover procedimento");
 
-        System.out.print("Id: ");
-        int id = scan.nextInt();
-        scan.nextLine();
-
+        int id = this.getId();
         try {
             Entidade procedimento = procedimentos.buscaId(id);
             procedimentos.remove(procedimento);
@@ -72,13 +65,10 @@ public class MenuProcedimentos extends MenuEntidade {
         }
     }
 
-    public void buscaIdEntidade() {
+    protected void buscaIdEntidade() {
         System.out.println("Busca por Id");
 
-        System.out.print("Id: ");
-        int id = scan.nextInt();
-        scan.nextLine();
-
+        int id = this.getId();
         try {
             Entidade procedimento = procedimentos.buscaId(id);
             System.out.println(procedimento.toString());
@@ -87,12 +77,8 @@ public class MenuProcedimentos extends MenuEntidade {
         }
     }
 
-    public void verTodosEntidade() {
-        System.out.println("Todos os Procedimentos = " + this.procedimentos.getEntidades().size());
-
-        for (Entidade procedimento : this.procedimentos.getEntidades()) {
-            System.out.printf("%d { %s }\n", procedimento.getId(), procedimento.toString());
-        }
+    protected void verTodosEntidade() {
+        System.out.println(this.procedimentos.toString());
     }
 
 }

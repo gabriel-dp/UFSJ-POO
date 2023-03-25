@@ -1,7 +1,9 @@
 package visao.entidades;
 
 import visao.*;
+
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public abstract class MenuEntidade extends Menu {
 
@@ -11,15 +13,30 @@ public abstract class MenuEntidade extends Menu {
         super(titulo, new String[] { "Voltar", "Inserir", "Alterar", "Apagar", "Buscar Id", "Ver todos" });
     }
 
-    abstract public void insereEntidade();
+    abstract protected void insereEntidade();
 
-    abstract public void alteraEntidade();
+    abstract protected void alteraEntidade();
 
-    abstract public void removeEntidade();
+    abstract protected void removeEntidade();
 
-    abstract public void buscaIdEntidade();
+    abstract protected void buscaIdEntidade();
 
-    abstract public void verTodosEntidade();
+    abstract protected void verTodosEntidade();
+
+    protected int getId() {
+        int id;
+        do {
+            try {
+                System.out.print("Id: ");
+                id = scan.nextInt();
+                scan.nextLine();
+                return id;
+            } catch (InputMismatchException e) {
+                scan.nextLine();
+                System.out.println("Id inválido - tente novamente");
+            }
+        } while (true);
+    }
 
     public void menu() {
         int opcao;

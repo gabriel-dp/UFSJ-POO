@@ -22,12 +22,11 @@ public class MenuManutencoes extends MenuEntidade {
 
         do {
             try {
-                System.out.print("\nId do Procedimento: ");
-                int idProcedimento = scan.nextInt();
+                int idProcedimento = this.getId();
                 Procedimento procedimento = (Procedimento) procedimentos.buscaId(idProcedimento);
 
                 System.out.print("Quantidade: ");
-                int quantidade = scan.nextInt();
+                int quantidade = this.getInteger();
 
                 novosServicos.add(new Servico(procedimento, quantidade));
             } catch (IdException erroIdProcedimento) {
@@ -41,8 +40,7 @@ public class MenuManutencoes extends MenuEntidade {
 
     private Veiculo recebeVeiculo() {
         try {
-            System.out.print("\nId do veículo: ");
-            int idVeiculo = scan.nextInt();
+            int idVeiculo = this.getId();
 
             return ((Veiculo) veiculos.buscaId(idVeiculo));
         } catch (IdException erroIdVeiculo) {
@@ -51,11 +49,10 @@ public class MenuManutencoes extends MenuEntidade {
         }
     }
 
-    public void insereEntidade() {
+    protected void insereEntidade() {
         System.out.println("Adicionar Manutenção");
 
-        System.out.print("Id: ");
-        int idManutencao = scan.nextInt();
+        int idManutencao = this.getId();
         try {
             manutencoes.buscaId(idManutencao);
             System.out.println("\nId já existente");
@@ -73,12 +70,10 @@ public class MenuManutencoes extends MenuEntidade {
         }
     }
 
-    public void alteraEntidade() {
+    protected void alteraEntidade() {
         System.out.println("Alterar dados da Manutenção");
 
-        System.out.print("Id: ");
-        int id = scan.nextInt();
-
+        int id = this.getId();
         try {
             Entidade antigaManutencao = manutencoes.buscaId(id);
 
@@ -98,12 +93,10 @@ public class MenuManutencoes extends MenuEntidade {
         }
     }
 
-    public void removeEntidade() {
+    protected void removeEntidade() {
         System.out.println("Remover Manutenção");
 
-        System.out.print("Id: ");
-        int id = scan.nextInt();
-
+        int id = this.getId();
         try {
             Entidade manutencao = manutencoes.buscaId(id);
             manutencoes.remove(manutencao);
@@ -113,12 +106,10 @@ public class MenuManutencoes extends MenuEntidade {
         }
     }
 
-    public void buscaIdEntidade() {
+    protected void buscaIdEntidade() {
         System.out.println("Busca por Id");
 
-        System.out.print("Id: ");
-        int id = scan.nextInt();
-
+        int id = this.getId();
         try {
             Entidade manutencao = manutencoes.buscaId(id);
             System.out.println(manutencao.toString());
@@ -127,12 +118,8 @@ public class MenuManutencoes extends MenuEntidade {
         }
     }
 
-    public void verTodosEntidade() {
-        System.out.println("Todos as Manutenções = " + this.manutencoes.getEntidades().size());
-
-        for (Entidade procedimento : this.manutencoes.getEntidades()) {
-            System.out.printf("%d { %s }\n", procedimento.getId(), procedimento.toString());
-        }
+    protected void verTodosEntidade() {
+        System.out.print(this.manutencoes.toString());
     }
 
 }
