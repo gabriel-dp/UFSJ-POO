@@ -35,7 +35,7 @@ public class Manutencao extends Entidade {
         sb.append(veiculo.toString() + "\n");
         sb.append("Servicos: [\n");
         for (Servico servico : servicos) {
-            sb.append("\t" + servico.toString() + "\n");
+            sb.append("  " + servico.toString() + "\n");
         }
         sb.append("]");
         return sb.toString();

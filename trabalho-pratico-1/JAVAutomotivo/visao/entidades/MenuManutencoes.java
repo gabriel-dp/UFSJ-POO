@@ -112,7 +112,6 @@ public class MenuManutencoes extends MenuEntidade {
         System.out.println("Busca por Id");
 
         int id = this.getId();
-        this.getInteger();
         try {
             Entidade manutencao = this.manutencoes.buscaId(id);
             System.out.println(manutencao.toString());
