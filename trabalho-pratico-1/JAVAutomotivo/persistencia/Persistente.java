@@ -13,14 +13,6 @@ public class Persistente {
         this.entidades = new ArrayList<Entidade>();
     }
 
-    public ArrayList<Entidade> getEntidades() {
-        return this.entidades;
-    }
-
-    public void setEntidades(ArrayList<Entidade> novasEntidades) {
-        this.entidades = novasEntidades;
-    }
-
     public void insere(Entidade entidade) {
         this.entidades.add(entidade);
     }
@@ -46,7 +38,7 @@ public class Persistente {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("Total = %d\n", this.entidades.size()));
-        for (Entidade entidade : entidades) {
+        for (Entidade entidade : this.entidades) {
             sb.append(String.format("%d { %s }\n", entidade.getId(), entidade.toString()));
         }
         return sb.toString();

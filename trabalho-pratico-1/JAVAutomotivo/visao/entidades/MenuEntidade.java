@@ -10,16 +10,6 @@ public abstract class MenuEntidade extends Menu {
         super(titulo, new String[] { "Voltar", "Inserir", "Alterar", "Apagar", "Buscar Id", "Ver todos" });
     }
 
-    abstract protected void insereEntidade();
-
-    abstract protected void alteraEntidade();
-
-    abstract protected void removeEntidade();
-
-    abstract protected void buscaIdEntidade();
-
-    abstract protected void verTodosEntidade();
-
     protected int getId() {
         int id;
         do {
@@ -35,10 +25,20 @@ public abstract class MenuEntidade extends Menu {
         } while (true);
     }
 
+    abstract protected void insereEntidade();
+
+    abstract protected void alteraEntidade();
+
+    abstract protected void removeEntidade();
+
+    abstract protected void buscaIdEntidade();
+
+    abstract protected void verTodosEntidade();
+
     public void menu() {
         int opcao;
         do {
-            opcao = this.getOpcao();
+            opcao = super.getOpcao();
             switch (opcao) {
                 case 0:
                     System.out.println("Saiu da edição da entidade");

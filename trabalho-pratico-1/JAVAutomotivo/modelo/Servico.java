@@ -10,22 +10,6 @@ public class Servico {
         this.quantidade = quantidade;
     }
 
-    public Procedimento getProcedimento() {
-        return this.procedimento;
-    }
-
-    public void setProcedimento(Procedimento novoProcedimento) {
-        this.procedimento = novoProcedimento;
-    }
-
-    public int getQuantidade() {
-        return this.quantidade;
-    }
-
-    public void setQuantidade(int novaQuantidade) {
-        this.quantidade = novaQuantidade;
-    }
-
     public String toString() {
         return String.format("Procedimento = { %s } | Quantidade = %d", this.procedimento.toString(),
                 this.quantidade);
