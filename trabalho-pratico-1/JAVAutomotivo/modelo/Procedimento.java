@@ -11,22 +11,6 @@ public class Procedimento extends Entidade {
         this.valor = valor;
     }
 
-    public String getNomeProcedimento() {
-        return this.nomeProcedimento;
-    }
-
-    public void setNomeProcedimento(String novoNomeProcedimento) {
-        this.nomeProcedimento = novoNomeProcedimento;
-    }
-
-    public double getValor() {
-        return this.valor;
-    }
-
-    public void setValor(double novoValor) {
-        this.valor = novoValor;
-    }
-
     public String toString() {
         return String.format("Nome = %s | Valor = %.2f", this.nomeProcedimento, this.valor);
     }

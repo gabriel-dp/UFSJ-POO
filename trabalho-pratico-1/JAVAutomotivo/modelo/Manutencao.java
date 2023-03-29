@@ -14,27 +14,11 @@ public class Manutencao extends Entidade {
         this.servicos = servicos;
     }
 
-    public Veiculo getVeiculo() {
-        return this.veiculo;
-    }
-
-    public void setVeiculo(Veiculo novoVeiculo) {
-        this.veiculo = novoVeiculo;
-    }
-
-    public ArrayList<Servico> getServicos() {
-        return this.servicos;
-    }
-
-    public void setServicos(ArrayList<Servico> novosServicos) {
-        this.servicos = novosServicos;
-    }
-
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(veiculo.toString() + "\n");
+        sb.append(this.veiculo.toString() + "\n");
         sb.append("Servicos: [\n");
-        for (Servico servico : servicos) {
+        for (Servico servico : this.servicos) {
             sb.append("  " + servico.toString() + "\n");
         }
         sb.append("]");

@@ -1,3 +1,9 @@
+/*
+ *  Trabalho Prático 1 - Programação Orientada a Objetos
+ *  Estudantes - [ Gabriel de Paula Meira ]
+ *  Professor - Matheus Viana
+ */
+
 import persistencia.*;
 import visao.*;
 
