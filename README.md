@@ -5,6 +5,7 @@ All exercise lists, practical works and random codes created for better Java lea
 ## Exercise lists
 
 - [Lista de Exercícios 01](./lista-exercicios-01)
+- [Lista de Exercícios 02](./lista-exercicios-02)
 
 ## Practical works
 
