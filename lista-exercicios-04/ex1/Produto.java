@@ -1,6 +1,6 @@
 package ex1;
 
-public class Produto<T> {
+public class Produto<T> implements Comparable<Produto<T>> {
     private String nome;
     private float valor;
     private T codigo;
@@ -11,10 +11,11 @@ public class Produto<T> {
         this.codigo = codigo;
     }
 
-    public boolean igual(Produto<T> p) {
-        if (this.nome.equals(p.nome) && this.valor == p.valor)
-            return true;
-        return false;
+    public int compareTo(Produto<T> p) {
+        int r = this.nome.compareTo(p.nome);
+        if (r != 0)
+            return r;
+        return (int) ((this.valor - p.valor) * 100);
     }
 
     public String toString() {
