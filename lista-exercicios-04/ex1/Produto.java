@@ -11,8 +11,8 @@ public class Produto<T> {
         this.codigo = codigo;
     }
 
-    public boolean igual(Produto<T> p1, Produto<T> p2) {
-        if (p1.nome.equals(p2.nome) && p1.valor == p2.valor)
+    public boolean igual(Produto<T> p) {
+        if (this.nome.equals(p.nome) && this.valor == p.valor)
             return true;
         return false;
     }
@@ -21,9 +21,4 @@ public class Produto<T> {
         return "Código = " + this.codigo + " | Nome = " + this.nome + " | Valor = " + String.format("%.2f", this.valor);
     }
 
-    public static void main(String[] args) {
-        Produto<T> p1 = new Produto<T>("Pasta de dente", 12.59F, 1234);
-        Produto<T> p2 = new Produto<T>("Escova de dente", 12.59F, 4321);
-        System.out.println(igual(p1, p2));
-    }
 }
