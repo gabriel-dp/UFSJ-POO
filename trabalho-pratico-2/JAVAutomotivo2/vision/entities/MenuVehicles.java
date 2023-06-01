@@ -1,6 +1,6 @@
 package vision.entities;
 
-import control.*;
+import controller.*;
 import model.*;
 
 public class MenuVehicles extends MenuEntity {

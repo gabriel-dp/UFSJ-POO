@@ -2,7 +2,7 @@ package vision.entities;
 
 import java.util.ArrayList;
 
-import control.*;
+import controller.*;
 import model.*;
 
 public class MenuMaintenances extends MenuEntity {

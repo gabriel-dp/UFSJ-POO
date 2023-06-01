@@ -4,7 +4,7 @@
  *  Professor - Matheus Viana
  */
 
-import control.*;
+import controller.*;
 import vision.*;
 
 public class Program {

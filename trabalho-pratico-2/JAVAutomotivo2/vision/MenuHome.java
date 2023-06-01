@@ -1,6 +1,6 @@
 package vision;
 
-import control.*;
+import controller.*;
 import vision.entities.*;
 
 public class MenuHome extends Menu {
