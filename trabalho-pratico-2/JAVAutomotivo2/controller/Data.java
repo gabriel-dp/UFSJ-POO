@@ -1,8 +1,14 @@
 package controller;
 
+/*
+ * Singleton Design Pattern - Eager Initialization
+ * Controls Data instance to have only one Data
+ */
+
 public class Data {
 
     private static final Data data = new Data();
+
     private Persistent vehicles;
     private Persistent procedures;
     private Persistent maintenances;

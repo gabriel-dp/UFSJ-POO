@@ -12,6 +12,4 @@ public abstract class Entity {
         return this.id;
     }
 
-    abstract public String toString();
-
 }

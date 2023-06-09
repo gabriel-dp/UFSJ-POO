@@ -1,10 +1,7 @@
 package controller;
 
-import java.util.ArrayList;
-
 import model.*;
-
-import java.lang.StringBuilder;
+import java.util.ArrayList;
 
 public class Persistent {
 
@@ -34,15 +31,6 @@ public class Persistent {
             }
         }
         throw new IdException(id);
-    }
-
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format("Total = %d\n", this.entities.size()));
-        for (Entity entity : this.entities) {
-            sb.append(String.format("%d { %s }\n", entity.getId(), entity.toString()));
-        }
-        return sb.toString();
     }
 
 }

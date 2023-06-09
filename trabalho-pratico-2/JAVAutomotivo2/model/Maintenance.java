@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.lang.StringBuilder;
 
 public class Maintenance extends Entity {
 
@@ -14,15 +13,12 @@ public class Maintenance extends Entity {
         this.services = services;
     }
 
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.vehicle.toString() + "\n");
-        sb.append("Services: [\n");
-        for (Service service : this.services) {
-            sb.append("  " + service.toString() + "\n");
-        }
-        sb.append("]");
-        return sb.toString();
+    public Vehicle getVehicle() {
+        return this.vehicle;
+    }
+
+    public ArrayList<Service> getServices() {
+        return this.services;
     }
 
 }

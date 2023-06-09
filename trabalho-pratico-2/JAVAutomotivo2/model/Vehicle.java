@@ -13,8 +13,16 @@ public class Vehicle extends Entity {
         this.client = client;
     }
 
-    public String toString() {
-        return String.format("Model = %s | Plate = %s | Client = %s", this.model, this.plate, this.client);
+    public String getModel() {
+        return this.model;
+    }
+
+    public String getPlate() {
+        return this.plate;
+    }
+
+    public String getClient() {
+        return this.client;
     }
 
 }

@@ -10,9 +10,12 @@ public class Service {
         this.quantity = quantity;
     }
 
-    public String toString() {
-        return String.format("Procedure = { %s } | Quantity = %d", this.procedure.toString(),
-                this.quantity);
+    public Procedure getProcedure() {
+        return this.procedure;
+    }
+
+    public int getQuantity() {
+        return this.quantity;
     }
 
 }

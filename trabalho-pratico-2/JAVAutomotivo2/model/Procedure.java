@@ -11,8 +11,12 @@ public class Procedure extends Entity {
         this.value = value;
     }
 
-    public String toString() {
-        return String.format("Name = %s | Value = %.2f", this.procedureName, this.value);
+    public String getProcedureName() {
+        return this.procedureName;
+    }
+
+    public double getValue() {
+        return this.value;
     }
 
 }

@@ -3,7 +3,7 @@ package controller;
 public class IdException extends Exception {
 
     public IdException(int id) {
-        super(String.format("Id não encontrado (%d)", id));
+        super(String.format("Id not found (%d)", id));
     }
 
 }
