@@ -10,7 +10,6 @@ import vision.*;
 public class Program {
     public static void main(String[] args) {
         Data data = Data.createData();
-        MenuHome app = new MenuHome(data);
-        app.menu();
+        new AppFrame(data);
     }
 }
