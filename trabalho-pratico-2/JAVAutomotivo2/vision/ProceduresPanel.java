@@ -10,8 +10,4 @@ public class ProceduresPanel extends EntityPanel {
         add(new JButton("Procedimento"));
     }
 
-    public String getTitle() {
-        return this.title;
-    }
-
 }

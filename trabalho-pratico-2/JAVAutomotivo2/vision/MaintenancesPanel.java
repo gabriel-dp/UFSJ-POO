@@ -10,8 +10,4 @@ public class MaintenancesPanel extends EntityPanel {
         add(new JButton("Manutençao"));
     }
 
-    public String getTitle() {
-        return this.title;
-    }
-
 }

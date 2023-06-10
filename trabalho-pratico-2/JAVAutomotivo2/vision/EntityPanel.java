@@ -4,8 +4,10 @@ import javax.swing.*;
 
 public abstract class EntityPanel extends JPanel {
 
-    protected String title;
+    protected String title = "Panel";
 
-    public abstract String getTitle();
+    public String getTitle() {
+        return this.title;
+    }
 
 }

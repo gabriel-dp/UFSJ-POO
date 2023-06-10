@@ -10,8 +10,4 @@ public class VehiclesPanel extends EntityPanel {
         add(new JButton("Veículo"));
     }
 
-    public String getTitle() {
-        return this.title;
-    }
-
 }
