@@ -21,25 +21,30 @@ public class EntityPanel extends JPanel {
     };
 
     public EntityPanel(EntityPanelSettings settings) {
-        super(new FlowLayout(FlowLayout.CENTER, 0, 10));
+        this.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 10));
 
         this.settings = settings;
         JTextField[] textFields = new JTextField[settings.getInputs().length];
 
-        add(createTitle(settings.getTitle()));
-        add(createForm(textFields));
-        add(createButtonsPanel(textFields));
-        add(createScrollableTable(settings.getInputs()));
+        this.add(createTitle(settings.getTitle()));
+        this.add(createForm(textFields));
+        this.add(createButtonsPanel(textFields));
+        this.add(createScrollableTable(settings.getInputs()));
     }
 
     public EntityPanelSettings getSettings() {
         return this.settings;
     }
 
-    private JLabel createTitle(String title) {
-        JLabel panelTitle = new JLabel(title);
-        panelTitle.setFont(new Font("Arial", Font.BOLD, 17));
-        return panelTitle;
+    private JPanel createTitle(String title) {
+        JPanel titlePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        titlePanel.setPreferredSize(new Dimension(800, 30));
+
+        JLabel titleLabel = new JLabel(title);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 17));
+        titlePanel.add(titleLabel);
+
+        return titlePanel;
     }
 
     private JPanel createForm(JTextField[] textFields) {
@@ -61,7 +66,9 @@ public class EntityPanel extends JPanel {
     }
 
     private JPanel createButtonsPanel(JTextField[] textFields) {
-        JPanel buttonsPanel = new JPanel(new FlowLayout());
+        JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonsPanel.setPreferredSize(new Dimension(800, 35));
+
         JButton addButton = new JButton("Adicionar");
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -96,7 +103,7 @@ public class EntityPanel extends JPanel {
         table.getTableHeader().setReorderingAllowed(false);
 
         JScrollPane scrollable = new JScrollPane();
-        scrollable.setPreferredSize(new Dimension(600, 350));
+        scrollable.setPreferredSize(new Dimension(600, 325));
         scrollable.setViewportView(table);
 
         return scrollable;

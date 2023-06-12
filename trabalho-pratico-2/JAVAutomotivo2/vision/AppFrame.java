@@ -10,7 +10,7 @@ public class AppFrame extends JFrame {
 
     private JPanel appPanel = new JPanel(new BorderLayout());
     private JPanel navPanel = new JPanel(new GridLayout(1, 3));
-    private CardLayout mainLayout = new CardLayout(0, 15);
+    private CardLayout mainLayout = new CardLayout();
     private JPanel mainPanel = new JPanel(mainLayout);
 
     public AppFrame(Data data) {
