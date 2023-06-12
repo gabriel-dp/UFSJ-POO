@@ -4,12 +4,11 @@
  *  Professor - Matheus Viana
  */
 
-import controller.*;
-import vision.*;
+import controller.Data;
+import vision.AppFrame;
 
 public class Program {
     public static void main(String[] args) {
-        Data data = Data.createData();
-        new AppFrame(data);
+        new AppFrame(Data.createData());
     }
 }

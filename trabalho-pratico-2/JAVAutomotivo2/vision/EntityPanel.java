@@ -2,6 +2,7 @@ package vision;
 
 import model.Entity;
 import controller.Persistent;
+import controller.InputException;
 import controller.IdException;
 
 import java.awt.*;
@@ -28,7 +29,7 @@ public class EntityPanel extends JPanel {
 
         this.add(createTitle(settings.getTitle()));
         this.add(createForm(textFields));
-        this.add(createButtonsPanel(textFields));
+        this.add(createButtons(textFields));
         this.add(createScrollableTable(settings.getInputs()));
     }
 
@@ -65,7 +66,7 @@ public class EntityPanel extends JPanel {
         return formPanel;
     }
 
-    private JPanel createButtonsPanel(JTextField[] textFields) {
+    private JPanel createButtons(JTextField[] textFields) {
         JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonsPanel.setPreferredSize(new Dimension(800, 35));
 
@@ -73,13 +74,18 @@ public class EntityPanel extends JPanel {
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    settings.validForm(textFields);
+                    settings.checkEmpty(textFields);
                     addEntity(settings.createEntity(textFields), settings.getPersistent());
                     loadTableData(settings.getPersistent());
-                } catch (Exception error) {
-                    System.out.println(error.getMessage());
+                } catch (IdException errorId) {
+                    System.out.printf("Id '%d' não encontrado\n", errorId.getId());
+                } catch (InputException errorInput) {
+                    System.out.println("Entrada(s) inválida(s)");
+                } catch (NumberFormatException _e) {
+                    System.out.println("Número(s) inválido(s)");
+                } catch (Exception errorGeneric) {
+                    System.out.println(errorGeneric.getMessage());
                 }
-
             }
         });
         buttonsPanel.add(addButton);
@@ -113,7 +119,7 @@ public class EntityPanel extends JPanel {
         try {
             Entity old = persistent.searchId(entity.getId());
             persistent.modify(old, entity);
-        } catch (IdException e) {
+        } catch (IdException e) { // Creates new Entity if not found id
             persistent.insert(entity);
         }
     }

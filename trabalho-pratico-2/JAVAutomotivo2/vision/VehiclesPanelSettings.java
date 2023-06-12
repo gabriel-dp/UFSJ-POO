@@ -31,17 +31,13 @@ public class VehiclesPanelSettings implements EntityPanelSettings {
         return this.data.getVehicles();
     }
 
-    public void validForm(JTextField[] textFields) throws Exception {
-        checkEmpty(textFields);
-        Integer.parseInt(textFields[0].getText());
-    }
+    public Entity createEntity(JTextField[] textFields) throws NumberFormatException {
+        int id = Integer.parseInt(textFields[0].getText());
+        String model = textFields[1].getText();
+        String plate = textFields[2].getText();
+        String client = textFields[3].getText();
 
-    public Entity createEntity(JTextField[] textFields) {
-        return new Vehicle(
-                Integer.parseInt(textFields[0].getText()),
-                textFields[1].getText(),
-                textFields[2].getText(),
-                textFields[3].getText());
+        return new Vehicle(id, model, plate, client);
     }
 
 }

@@ -31,17 +31,12 @@ public class ProceduresPanelSettings implements EntityPanelSettings {
         return this.data.getProcedures();
     }
 
-    public void validForm(JTextField[] textFields) throws Exception {
-        checkEmpty(textFields);
-        Integer.parseInt(textFields[0].getText());
-        Double.parseDouble(textFields[2].getText());
-    }
+    public Entity createEntity(JTextField[] textFields) throws NumberFormatException {
+        int id = Integer.parseInt(textFields[0].getText());
+        String name = textFields[1].getText();
+        double value = Double.parseDouble(textFields[2].getText());
 
-    public Entity createEntity(JTextField[] textFields) {
-        return new Procedure(
-                Integer.parseInt(textFields[0].getText()),
-                textFields[1].getText(),
-                Double.parseDouble(textFields[2].getText()));
+        return new Procedure(id, name, value);
     }
 
 }

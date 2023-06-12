@@ -1,8 +1,7 @@
 package vision;
 
 import model.*;
-import controller.Data;
-import controller.Persistent;
+import controller.*;
 
 import javax.swing.JTextField;
 import java.util.ArrayList;
@@ -31,31 +30,27 @@ public class MaintenancesPanelSettings implements EntityPanelSettings {
         return this.data.getMaintenances();
     }
 
-    public void validForm(JTextField[] textFields) throws Exception {
-        checkEmpty(textFields);
-        Integer.parseInt(textFields[0].getText());
-        Integer.parseInt(textFields[1].getText());
-        if (textFields[2].getText().split(" ").length == 0) {
-            throw new Exception("Invalid services");
-        }
-    }
-
-    public Entity createEntity(JTextField[] textFields) throws Exception {
-
+    public Entity createEntity(JTextField[] textFields) throws NumberFormatException, IdException, InputException {
+        int maintenanceId = Integer.parseInt(textFields[0].getText());
+        int vehicleId = Integer.parseInt(textFields[1].getText());
         ArrayList<Service> services = new ArrayList<>();
+
+        Vehicle vehicle = (Vehicle) data.getVehicles().searchId(vehicleId);
+
         String[] servicesSplited = textFields[2].getText().split(" ");
         for (String s : servicesSplited) {
             String[] args = s.split(",");
-            int id = Integer.parseInt(args[0]);
-            int quantity = Integer.parseInt(args[1]);
-            Service service = new Service((Procedure) data.getProcedures().searchId(id), quantity);
+            if (args.length < 2) {
+                throw new InputException("Invalid services");
+            }
+
+            int procedureId = Integer.parseInt(args[0]);
+            int procedureQuantity = Integer.parseInt(args[1]);
+            Service service = new Service((Procedure) data.getProcedures().searchId(procedureId), procedureQuantity);
             services.add(service);
         }
 
-        return new Maintenance(
-                Integer.parseInt(textFields[0].getText()),
-                (Vehicle) data.getVehicles().searchId(Integer.parseInt(textFields[1].getText())),
-                services);
+        return new Maintenance(maintenanceId, vehicle, services);
     }
 
 }
