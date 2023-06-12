@@ -32,7 +32,7 @@ public class EntityPanel extends JPanel {
         add(createScrollableTable(settings.getInputs()));
     }
 
-    public EntityPanelSettings getEntityInterface() {
+    public EntityPanelSettings getSettings() {
         return this.settings;
     }
 

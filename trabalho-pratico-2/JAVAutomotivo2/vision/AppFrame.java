@@ -34,8 +34,8 @@ public class AppFrame extends JFrame {
 
         // Add all entity panels
         for (EntityPanel panel : panels) {
-            navPanel.add(createMainButton(panel.getEntityInterface().getTitle()));
-            mainPanel.add(panel, panel.getEntityInterface().getTitle());
+            navPanel.add(createMainButton(panel.getSettings().getTitle()));
+            mainPanel.add(panel, panel.getSettings().getTitle());
         }
 
         setVisible(true);
