@@ -1,7 +1,5 @@
-package vision;
+package view;
 
-import model.Entity;
-import controller.Persistent;
 import controller.InputException;
 import controller.IdException;
 
@@ -75,8 +73,8 @@ public class EntityPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     settings.checkEmpty(textFields);
-                    addEntity(settings.createEntity(textFields), settings.getPersistent());
-                    loadTableData(settings.getPersistent());
+                    settings.getEntityController().addEntity(settings.createEntity(textFields));
+                    loadTableData(settings.getEntityController().getController().getTableData());
                 } catch (IdException errorId) {
                     System.out.printf("Id '%d' não encontrado\n", errorId.getId());
                 } catch (InputException errorInput) {
@@ -93,8 +91,11 @@ public class EntityPanel extends JPanel {
         JButton removeButton = new JButton("Remover");
         removeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                removeEntity(settings.getPersistent());
-                loadTableData(settings.getPersistent());
+                int index = table.getSelectedRow();
+                if (index >= 0) {
+                    settings.getEntityController().removeEntity(index);
+                    loadTableData(settings.getEntityController().getController().getTableData());
+                }
             }
         });
         buttonsPanel.add(removeButton);
@@ -115,26 +116,10 @@ public class EntityPanel extends JPanel {
         return scrollable;
     }
 
-    private void addEntity(Entity entity, Persistent persistent) {
-        try {
-            Entity old = persistent.searchId(entity.getId());
-            persistent.modify(old, entity);
-        } catch (IdException e) { // Creates new Entity if not found id
-            persistent.insert(entity);
-        }
-    }
-
-    private void removeEntity(Persistent persistent) {
-        if (table.getSelectedRow() >= 0) {
-            Entity entity = persistent.getEntities().get(table.getSelectedRow());
-            persistent.remove(entity);
-        }
-    }
-
-    private void loadTableData(Persistent persistent) {
+    private void loadTableData(Object[][] tableData) {
         tableModel.setNumRows(0);
-        for (Entity entity : persistent.getEntities()) {
-            tableModel.addRow(entity.getData());
+        for (int i = 0; i < tableData.length; i++) {
+            tableModel.addRow(tableData[i]);
         }
     }
 

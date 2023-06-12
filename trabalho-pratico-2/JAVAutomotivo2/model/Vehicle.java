@@ -25,13 +25,4 @@ public class Vehicle extends Entity {
         return this.client;
     }
 
-    public Object[] getData() {
-        return new Object[] {
-                this.getId(),
-                this.getModel(),
-                this.getPlate(),
-                this.getClient()
-        };
-    }
-
 }

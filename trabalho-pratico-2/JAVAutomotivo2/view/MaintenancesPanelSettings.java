@@ -1,4 +1,4 @@
-package vision;
+package view;
 
 import model.*;
 import controller.*;
@@ -8,12 +8,6 @@ import java.util.ArrayList;
 
 public class MaintenancesPanelSettings implements EntityPanelSettings {
 
-    public Data data;
-
-    public MaintenancesPanelSettings(Data data) {
-        this.data = data;
-    }
-
     public String getTitle() {
         return "Manutenções";
     }
@@ -22,12 +16,8 @@ public class MaintenancesPanelSettings implements EntityPanelSettings {
         return new String[] { "Id", "Id Veículo", "Serviços" };
     }
 
-    public Data getData() {
-        return this.data;
-    }
-
-    public Persistent getPersistent() {
-        return this.data.getMaintenances();
+    public EntityController getEntityController() {
+        return new EntityController(new MaintenancesController());
     }
 
     public Entity createEntity(JTextField[] textFields) throws NumberFormatException, IdException, InputException {
@@ -35,7 +25,9 @@ public class MaintenancesPanelSettings implements EntityPanelSettings {
         int vehicleId = Integer.parseInt(textFields[1].getText());
         ArrayList<Service> services = new ArrayList<>();
 
-        Vehicle vehicle = (Vehicle) data.getVehicles().searchId(vehicleId);
+        VehiclesController vehiclesController = new VehiclesController();
+        ProceduresController proceduresController = new ProceduresController();
+        Vehicle vehicle = (Vehicle) vehiclesController.getPersistent().searchId(vehicleId);
 
         String[] servicesSplited = textFields[2].getText().split(" ");
         for (String s : servicesSplited) {
@@ -46,7 +38,9 @@ public class MaintenancesPanelSettings implements EntityPanelSettings {
 
             int procedureId = Integer.parseInt(args[0]);
             int procedureQuantity = Integer.parseInt(args[1]);
-            Service service = new Service((Procedure) data.getProcedures().searchId(procedureId), procedureQuantity);
+            Service service = new Service(
+                    (Procedure) proceduresController.getPersistent().searchId(procedureId),
+                    procedureQuantity);
             services.add(service);
         }
 

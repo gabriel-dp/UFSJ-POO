@@ -1,4 +1,4 @@
-package controller;
+package data;
 
 /*
  * Singleton Design Pattern - Eager Initialization
@@ -19,7 +19,7 @@ public class Data {
         this.maintenances = new Persistent();
     }
 
-    public static Data createData() {
+    public static Data getInstance() {
         return data;
     }
 

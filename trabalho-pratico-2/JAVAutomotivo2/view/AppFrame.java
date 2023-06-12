@@ -1,10 +1,10 @@
-package vision;
-
-import controller.Data;
+package view;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import data.Data;
 
 public class AppFrame extends JFrame {
 
@@ -27,9 +27,9 @@ public class AppFrame extends JFrame {
 
         // Define entity panels
         final EntityPanel[] panels = {
-                new EntityPanel(new VehiclesPanelSettings(data)),
-                new EntityPanel(new ProceduresPanelSettings(data)),
-                new EntityPanel(new MaintenancesPanelSettings(data)),
+                new EntityPanel(new VehiclesPanelSettings()),
+                new EntityPanel(new ProceduresPanelSettings()),
+                new EntityPanel(new MaintenancesPanelSettings()),
         };
 
         // Add all entity panels

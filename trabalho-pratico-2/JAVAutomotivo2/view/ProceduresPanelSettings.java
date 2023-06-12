@@ -1,19 +1,13 @@
-package vision;
+package view;
 
 import model.Entity;
 import model.Procedure;
-import controller.Data;
-import controller.Persistent;
+import controller.EntityController;
+import controller.ProceduresController;
 
 import javax.swing.JTextField;
 
 public class ProceduresPanelSettings implements EntityPanelSettings {
-
-    public Data data;
-
-    public ProceduresPanelSettings(Data data) {
-        this.data = data;
-    }
 
     public String getTitle() {
         return "Procedimentos";
@@ -23,12 +17,8 @@ public class ProceduresPanelSettings implements EntityPanelSettings {
         return new String[] { "Id", "Nome", "Valor" };
     }
 
-    public Data getData() {
-        return this.data;
-    }
-
-    public Persistent getPersistent() {
-        return this.data.getProcedures();
+    public EntityController getEntityController() {
+        return new EntityController(new ProceduresController());
     }
 
     public Entity createEntity(JTextField[] textFields) throws NumberFormatException {

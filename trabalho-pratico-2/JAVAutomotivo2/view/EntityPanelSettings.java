@@ -1,4 +1,4 @@
-package vision;
+package view;
 
 import model.Entity;
 import controller.*;
@@ -16,9 +16,7 @@ public interface EntityPanelSettings {
 
     public String[] getInputs();
 
-    public Data getData();
-
-    public Persistent getPersistent();
+    public EntityController getEntityController();
 
     default void checkEmpty(JTextField[] textFields) throws Exception {
         for (JTextField tf : textFields) {

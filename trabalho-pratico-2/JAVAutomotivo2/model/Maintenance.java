@@ -21,21 +21,4 @@ public class Maintenance extends Entity {
         return this.services;
     }
 
-    public String getServicesString() {
-        StringBuilder sb = new StringBuilder();
-        for (Service service : this.services) {
-            sb.append(service.getService());
-            sb.append(" ");
-        }
-        return sb.toString();
-    }
-
-    public Object[] getData() {
-        return new Object[] {
-                this.getId(),
-                this.getVehicle().getId(),
-                this.getServicesString()
-        };
-    }
-
 }

@@ -1,19 +1,13 @@
-package vision;
+package view;
 
 import model.Entity;
 import model.Vehicle;
-import controller.Data;
-import controller.Persistent;
+import controller.EntityController;
+import controller.VehiclesController;
 
 import javax.swing.JTextField;
 
 public class VehiclesPanelSettings implements EntityPanelSettings {
-
-    public Data data;
-
-    public VehiclesPanelSettings(Data data) {
-        this.data = data;
-    }
 
     public String getTitle() {
         return "Veículos";
@@ -23,12 +17,8 @@ public class VehiclesPanelSettings implements EntityPanelSettings {
         return new String[] { "Id", "Modelo", "Placa", "Cliente" };
     }
 
-    public Data getData() {
-        return this.data;
-    }
-
-    public Persistent getPersistent() {
-        return this.data.getVehicles();
+    public EntityController getEntityController() {
+        return new EntityController(new VehiclesController());
     }
 
     public Entity createEntity(JTextField[] textFields) throws NumberFormatException {
