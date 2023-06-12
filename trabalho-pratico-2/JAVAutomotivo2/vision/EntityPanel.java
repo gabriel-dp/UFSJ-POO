@@ -1,14 +1,13 @@
 package vision;
 
+import model.Entity;
+import controller.Persistent;
+import controller.IdException;
+
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
-import controller.IdException;
-import controller.Persistent;
-import model.Entity;
 
 public class EntityPanel extends JPanel {
 

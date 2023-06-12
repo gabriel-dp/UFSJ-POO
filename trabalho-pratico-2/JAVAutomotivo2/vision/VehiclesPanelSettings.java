@@ -2,11 +2,10 @@ package vision;
 
 import model.Entity;
 import model.Vehicle;
-
-import javax.swing.*;
-
 import controller.Data;
 import controller.Persistent;
+
+import javax.swing.JTextField;
 
 public class VehiclesPanelSettings implements EntityPanelSettings {
 

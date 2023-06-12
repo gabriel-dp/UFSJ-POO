@@ -1,13 +1,11 @@
 package vision;
 
 import model.*;
-
-import java.util.ArrayList;
-
-import javax.swing.*;
-
 import controller.Data;
 import controller.Persistent;
+
+import javax.swing.JTextField;
+import java.util.ArrayList;
 
 public class MaintenancesPanelSettings implements EntityPanelSettings {
 

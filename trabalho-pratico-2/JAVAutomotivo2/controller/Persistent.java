@@ -1,6 +1,7 @@
 package controller;
 
-import model.*;
+import model.Entity;
+
 import java.util.ArrayList;
 
 public class Persistent {

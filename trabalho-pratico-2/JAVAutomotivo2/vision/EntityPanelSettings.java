@@ -6,6 +6,11 @@ import controller.Persistent;
 
 import javax.swing.JTextField;
 
+/*
+ * Strategy Design Pattern
+ * Multiple panels can be created using EnitityPanel
+ */
+
 public interface EntityPanelSettings {
 
     public String getTitle();
