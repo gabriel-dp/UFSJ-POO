@@ -9,7 +9,7 @@ public class AppFrame extends JFrame {
 
     private JPanel appPanel = new JPanel(new BorderLayout());
     private JPanel navPanel = new JPanel(new GridLayout(1, 3));
-    private CardLayout mainLayout = new CardLayout();
+    private CardLayout mainLayout = new CardLayout(0, 15);
     private JPanel mainPanel = new JPanel(mainLayout);
 
     public AppFrame(Data data) {
@@ -25,14 +25,14 @@ public class AppFrame extends JFrame {
         this.add(appPanel);
 
         // Define entity panels
-        final EntityMenu[] panels = {
-                new EntityMenu(new VehiclesPanel(data)),
-                new EntityMenu(new ProceduresPanel(data)),
-                new EntityMenu(new MaintenancesPanel(data)),
+        final EntityPanel[] panels = {
+                new EntityPanel(new VehiclesPanelSettings(data)),
+                new EntityPanel(new ProceduresPanelSettings(data)),
+                new EntityPanel(new MaintenancesPanelSettings(data)),
         };
 
         // Add all entity panels
-        for (EntityMenu panel : panels) {
+        for (EntityPanel panel : panels) {
             navPanel.add(createMainButton(panel.getEntityInterface().getTitle()));
             mainPanel.add(panel, panel.getEntityInterface().getTitle());
         }

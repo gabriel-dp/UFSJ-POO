@@ -8,11 +8,11 @@ import javax.swing.*;
 import controller.Data;
 import controller.Persistent;
 
-public class VehiclesPanel implements EntityPanel {
+public class VehiclesPanelSettings implements EntityPanelSettings {
 
     public Data data;
 
-    public VehiclesPanel(Data data) {
+    public VehiclesPanelSettings(Data data) {
         this.data = data;
     }
 

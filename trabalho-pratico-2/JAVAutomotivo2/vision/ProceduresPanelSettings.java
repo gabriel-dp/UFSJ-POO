@@ -8,11 +8,11 @@ import javax.swing.*;
 import controller.Data;
 import controller.Persistent;
 
-public class ProceduresPanel implements EntityPanel {
+public class ProceduresPanelSettings implements EntityPanelSettings {
 
     public Data data;
 
-    public ProceduresPanel(Data data) {
+    public ProceduresPanelSettings(Data data) {
         this.data = data;
     }
 

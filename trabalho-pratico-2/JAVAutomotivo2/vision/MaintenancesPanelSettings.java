@@ -9,11 +9,11 @@ import javax.swing.*;
 import controller.Data;
 import controller.Persistent;
 
-public class MaintenancesPanel implements EntityPanel {
+public class MaintenancesPanelSettings implements EntityPanelSettings {
 
     public Data data;
 
-    public MaintenancesPanel(Data data) {
+    public MaintenancesPanelSettings(Data data) {
         this.data = data;
     }
 
