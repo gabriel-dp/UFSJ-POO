@@ -11,6 +11,10 @@ public class Persistent {
         this.entities = new ArrayList<Entity>();
     }
 
+    public ArrayList<Entity> getEntities() {
+        return this.entities;
+    }
+
     public void insert(Entity entity) {
         this.entities.add(entity);
     }

@@ -19,4 +19,12 @@ public class Procedure extends Entity {
         return this.value;
     }
 
+    public Object[] getData() {
+        return new Object[] {
+                this.getId(),
+                this.getProcedureName(),
+                this.getValue(),
+        };
+    }
+
 }

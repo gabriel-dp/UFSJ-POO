@@ -18,7 +18,6 @@ public class AppFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setSize(800, 600);
-        setVisible(true);
 
         // Add main panels
         appPanel.add(navPanel, BorderLayout.PAGE_START);
@@ -26,17 +25,19 @@ public class AppFrame extends JFrame {
         this.add(appPanel);
 
         // Define entity panels
-        final EntityPanel[] panels = {
-                new VehiclesPanel("Veículos", data),
-                new ProceduresPanel("Procedimentos", data),
-                new MaintenancesPanel("Manutenções", data)
+        final EntityMenu[] panels = {
+                new EntityMenu(new VehiclesPanel(data)),
+                new EntityMenu(new ProceduresPanel(data)),
+                new EntityMenu(new MaintenancesPanel(data)),
         };
 
         // Add all entity panels
-        for (EntityPanel panel : panels) {
-            navPanel.add(createMainButton(panel.getTitle()));
-            mainPanel.add(panel, panel.getTitle());
+        for (EntityMenu panel : panels) {
+            navPanel.add(createMainButton(panel.getEntityInterface().getTitle()));
+            mainPanel.add(panel, panel.getEntityInterface().getTitle());
         }
+
+        setVisible(true);
     }
 
     // Creates a main button with the event to redirects to the given panel

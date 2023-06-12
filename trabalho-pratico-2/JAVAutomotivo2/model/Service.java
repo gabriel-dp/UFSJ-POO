@@ -18,4 +18,8 @@ public class Service {
         return this.quantity;
     }
 
+    public String getService() {
+        return String.format("%d, %d", getProcedure().getId(), getQuantity());
+    }
+
 }

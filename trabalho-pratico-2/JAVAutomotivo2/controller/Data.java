@@ -27,11 +27,11 @@ public class Data {
         return this.vehicles;
     }
 
-    public Persistent getProcedure() {
+    public Persistent getProcedures() {
         return this.procedures;
     }
 
-    public Persistent getMaintenance() {
+    public Persistent getMaintenances() {
         return this.maintenances;
     }
 

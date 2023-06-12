@@ -1,13 +1,48 @@
 package vision;
 
-import controller.Data;
+import model.Entity;
+import model.Procedure;
+
 import javax.swing.*;
 
-public class ProceduresPanel extends EntityPanel {
+import controller.Data;
+import controller.Persistent;
 
-    public ProceduresPanel(String title, Data data) {
-        this.title = title;
-        add(new JButton("Procedimento"));
+public class ProceduresPanel implements EntityPanel {
+
+    public Data data;
+
+    public ProceduresPanel(Data data) {
+        this.data = data;
+    }
+
+    public String getTitle() {
+        return "Procedimentos";
+    }
+
+    public String[] getInputs() {
+        return new String[] { "Id", "Nome", "Valor" };
+    }
+
+    public Data getData() {
+        return this.data;
+    }
+
+    public Persistent getPersistent() {
+        return this.data.getProcedures();
+    }
+
+    public void validForm(JTextField[] textFields) throws Exception {
+        checkEmpty(textFields);
+        Integer.parseInt(textFields[0].getText());
+        Double.parseDouble(textFields[2].getText());
+    }
+
+    public Entity createEntity(JTextField[] textFields) {
+        return new Procedure(
+                Integer.parseInt(textFields[0].getText()),
+                textFields[1].getText(),
+                Double.parseDouble(textFields[2].getText()));
     }
 
 }

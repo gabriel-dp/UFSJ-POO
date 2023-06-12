@@ -1,13 +1,31 @@
 package vision;
 
-import javax.swing.*;
+import model.Entity;
+import controller.Data;
+import controller.Persistent;
 
-public abstract class EntityPanel extends JPanel {
+import javax.swing.JTextField;
 
-    protected String title = "Panel";
+public interface EntityPanel {
 
-    public String getTitle() {
-        return this.title;
+    public String getTitle();
+
+    public String[] getInputs();
+
+    public Data getData();
+
+    public Persistent getPersistent();
+
+    default void checkEmpty(JTextField[] textFields) throws Exception {
+        for (JTextField tf : textFields) {
+            if (tf.getText().isEmpty()) {
+                throw new Exception("Some inputs are empty");
+            }
+        }
     }
+
+    public void validForm(JTextField[] textFields) throws Exception;
+
+    public Entity createEntity(JTextField[] textFields) throws Exception;
 
 }
