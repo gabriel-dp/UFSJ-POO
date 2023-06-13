@@ -4,14 +4,18 @@ import model.*;
 import controller.*;
 
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
+import javax.swing.table.*;
+
 import java.util.ArrayList;
 
 public class MaintenancesPanel extends EntityPanel {
 
     private JTextField idTF = new JTextField();
     private JComboBox<Vehicle> vehiclesComboBox = new JComboBox<Vehicle>();
+    private ArrayList<Service> servicesArrayList = new ArrayList<>();
 
     public MaintenancesPanel() {
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 10));
@@ -37,10 +41,11 @@ public class MaintenancesPanel extends EntityPanel {
     protected JPanel createForm() {
         JPanel formPanel = new JPanel();
         formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
+        formPanel.setAlignmentY(Component.CENTER_ALIGNMENT);
 
         // Create id input
         JPanel idPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        idTF.setPreferredSize(new Dimension(200, 20));
+        idTF.setPreferredSize(new Dimension(150, 20));
         idPanel.add(new JLabel(String.format("%s: ", getInputs()[0])));
         idPanel.add(idTF);
         formPanel.add(idPanel);
@@ -67,6 +72,47 @@ public class MaintenancesPanel extends EntityPanel {
         vehiclesPanel.add(new JLabel(String.format("%s: ", getInputs()[1])));
         vehiclesPanel.add(vehiclesComboBox);
         formPanel.add(vehiclesPanel);
+
+        // Create servicess input
+        JButton servicesButton = new JButton("Editar serviços");
+        servicesButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JDialog lockingDialog = new JDialog(SwingUtilities.getWindowAncestor(formPanel));
+                lockingDialog.setSize(600, 300);
+                lockingDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+
+                DefaultTableModel servicesModel = new DefaultTableModel();
+                JTable servicesTable = new JTable(servicesModel);
+
+                servicesModel.addColumn("Procedimento");
+                Procedure[] proceduresArray = ((MaintenancesController) getEntityController()).getProceduresArray();
+                for (Procedure procedimento : proceduresArray) {
+                    servicesModel.addRow(new Object[] { procedimento, 0 });
+                }
+
+                servicesModel.addColumn("Quantidade");
+
+                JScrollPane servicesPanel = new JScrollPane();
+                servicesPanel.setPreferredSize(new Dimension(600, 50));
+                servicesPanel.setViewportView(servicesTable);
+
+                lockingDialog.add(servicesPanel);
+                lockingDialog.addWindowListener(new WindowAdapter() {
+                    public void windowClosing(WindowEvent e) {
+                        servicesArrayList.clear();
+                        for (int i = 0; i < proceduresArray.length; i++) {
+                            Service service;
+                            service = new Service(proceduresArray[i],
+                                    Integer.parseInt(servicesTable.getValueAt(i, 1).toString()));
+                            servicesArrayList.add(service);
+                        }
+                    }
+                });
+
+                lockingDialog.setVisible(true);
+            }
+        });
+        formPanel.add(servicesButton);
 
         return formPanel;
     }

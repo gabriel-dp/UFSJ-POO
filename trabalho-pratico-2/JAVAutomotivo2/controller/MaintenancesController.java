@@ -39,4 +39,13 @@ public class MaintenancesController extends EntityController {
         return vehiclesArray;
     }
 
+    public Procedure[] getProceduresArray() {
+        ArrayList<Entity> proceduresList = Data.getInstance()
+                .getProcedures()
+                .getEntities();
+        Procedure[] proceduresArray = new Procedure[proceduresList.size()];
+        proceduresArray = proceduresList.toArray(proceduresArray);
+        return proceduresArray;
+    }
+
 }

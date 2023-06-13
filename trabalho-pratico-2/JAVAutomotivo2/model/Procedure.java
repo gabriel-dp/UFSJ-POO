@@ -19,4 +19,8 @@ public class Procedure extends Entity {
         return this.value;
     }
 
+    public String toString() {
+        return String.format("%d | %s | %.2f", getId(), getProcedureName(), getValue());
+    }
+
 }
