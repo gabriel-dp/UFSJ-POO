@@ -50,9 +50,12 @@ public class MaintenancesPanel extends EntityPanel {
         idPanel.add(idTF);
         formPanel.add(idPanel);
 
-        // Create selectors panel
+        formPanel.add(Box.createVerticalStrut(5));
+
+        // Create selectors panel to vehicle and services
         JPanel selectorsPanel = new JPanel(new GridLayout(1, 2, 20, 0));
-        selectorsPanel.setPreferredSize(new Dimension(600, 30));
+        selectorsPanel.setPreferredSize(new Dimension(600, 25));
+        formPanel.add(selectorsPanel);
 
         // Create vehicle input
         final Object optionVehicle = "Selecione um veículo";
@@ -74,7 +77,7 @@ public class MaintenancesPanel extends EntityPanel {
         });
         selectorsPanel.add(vehiclesComboBox);
 
-        // Create servicess input
+        // Create services input
         JButton servicesButton = new JButton("Editar serviços");
         servicesButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -100,7 +103,6 @@ public class MaintenancesPanel extends EntityPanel {
                 servicesMenu.add(servicesTablePanel);
                 servicesMenu.addWindowListener(new WindowAdapter() {
                     public void windowClosing(WindowEvent e) {
-                        servicesArrayList.clear();
                         for (int i = 0; i < proceduresArray.length; i++) {
                             Service service;
                             service = new Service(proceduresArray[i],
@@ -114,8 +116,6 @@ public class MaintenancesPanel extends EntityPanel {
             }
         });
         selectorsPanel.add(servicesButton);
-
-        formPanel.add(selectorsPanel);
 
         return formPanel;
     }
@@ -136,6 +136,7 @@ public class MaintenancesPanel extends EntityPanel {
     protected void clearForm() {
         idTF.setText("");
         vehiclesComboBox.setSelectedIndex(0);
+        servicesArrayList.clear();
     }
 
     protected void fillForm() {
