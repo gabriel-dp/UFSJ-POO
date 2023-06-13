@@ -27,15 +27,15 @@ public class AppFrame extends JFrame {
 
         // Define entity panels
         final EntityPanel[] panels = {
-                new EntityPanel(new VehiclesPanelSettings()),
-                new EntityPanel(new ProceduresPanelSettings()),
-                new EntityPanel(new MaintenancesPanelSettings()),
+                new VehiclesPanel(),
+                new ProceduresPanel(),
+                new MaintenancesPanel()
         };
 
         // Add all entity panels
         for (EntityPanel panel : panels) {
-            navPanel.add(createMainButton(panel.getSettings().getTitle()));
-            mainPanel.add(panel, panel.getSettings().getTitle());
+            navPanel.add(createMainButton(panel.getTitle()));
+            mainPanel.add(panel, panel.getTitle());
         }
 
         setVisible(true);

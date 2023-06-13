@@ -25,4 +25,7 @@ public class Vehicle extends Entity {
         return this.client;
     }
 
+    public String toString() {
+        return String.format("%d | %s | %s | %s", getId(), getModel(), getPlate(), getClient());
+    }
 }

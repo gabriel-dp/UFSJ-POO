@@ -1,70 +1,52 @@
 package view;
 
+import model.Entity;
+import controller.EntityController;
 import controller.InputException;
-import controller.IdException;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.event.*;
+import javax.swing.table.*;
 
-public class EntityPanel extends JPanel {
+public abstract class EntityPanel extends JPanel {
 
-    private EntityPanelSettings settings;
-
-    private DefaultTableModel tableModel = new DefaultTableModel();
-    private JTable table = new JTable(tableModel) {
+    protected DefaultTableModel tableModel = new DefaultTableModel();
+    protected JTable table = new JTable(tableModel) {
         public boolean isCellEditable(int row, int column) {
             return false;
         };
     };
 
-    public EntityPanel(EntityPanelSettings settings) {
-        this.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 10));
+    protected abstract EntityController getEntityController();
 
-        this.settings = settings;
-        JTextField[] textFields = new JTextField[settings.getInputs().length];
+    protected abstract String getTitle();
 
-        this.add(createTitle(settings.getTitle()));
-        this.add(createForm(textFields));
-        this.add(createButtons(textFields));
-        this.add(createScrollableTable(settings.getInputs()));
-    }
+    protected abstract String[] getInputs();
 
-    public EntityPanelSettings getSettings() {
-        return this.settings;
-    }
+    protected abstract JPanel createForm();
 
-    private JPanel createTitle(String title) {
+    protected abstract void checkForm() throws Exception;
+
+    protected abstract Entity createEntity() throws Exception;
+
+    protected abstract void clearForm();
+
+    protected abstract void fillForm();
+
+    protected JPanel createTitle() {
         JPanel titlePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         titlePanel.setPreferredSize(new Dimension(800, 30));
 
-        JLabel titleLabel = new JLabel(title);
+        JLabel titleLabel = new JLabel(getTitle());
         titleLabel.setFont(new Font("Arial", Font.BOLD, 17));
         titlePanel.add(titleLabel);
 
         return titlePanel;
     }
 
-    private JPanel createForm(JTextField[] textFields) {
-        JPanel formPanel = new JPanel(new GridLayout(2, (int) Math.ceil(settings.getInputs().length / 2), 10, 0));
-
-        for (int i = 0; i < settings.getInputs().length; i++) {
-            JPanel subpanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-            JTextField tf = new JTextField();
-            tf.setPreferredSize(new Dimension(200, 20));
-            textFields[i] = tf;
-
-            subpanel.add(new JLabel(String.format("%s: ", settings.getInputs()[i])));
-            subpanel.add(tf);
-
-            formPanel.add(subpanel);
-        }
-
-        return formPanel;
-    }
-
-    private JPanel createButtons(JTextField[] textFields) {
+    protected JPanel createButtons() {
         JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonsPanel.setPreferredSize(new Dimension(800, 35));
 
@@ -72,11 +54,11 @@ public class EntityPanel extends JPanel {
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    settings.checkEmpty(textFields);
-                    settings.getEntityController().addEntity(settings.createEntity(textFields));
-                    loadTableData(settings.getEntityController().getController().getTableData());
-                } catch (IdException errorId) {
-                    System.out.printf("Id '%d' não encontrado\n", errorId.getId());
+                    checkForm();
+                    getEntityController().addEntity(createEntity());
+                    loadTableData(getEntityController().getController().getTableData());
+
+                    clearForm();
                 } catch (InputException errorInput) {
                     System.out.println("Entrada(s) inválida(s)");
                 } catch (NumberFormatException _e) {
@@ -93,8 +75,8 @@ public class EntityPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 int index = table.getSelectedRow();
                 if (index >= 0) {
-                    settings.getEntityController().removeEntity(index);
-                    loadTableData(settings.getEntityController().getController().getTableData());
+                    getEntityController().removeEntity(index);
+                    loadTableData(getEntityController().getController().getTableData());
                 }
             }
         });
@@ -103,7 +85,15 @@ public class EntityPanel extends JPanel {
         return buttonsPanel;
     }
 
-    private JScrollPane createScrollableTable(String[] inputs) {
+    protected JScrollPane createScrollableTable(String[] inputs) {
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent event) {
+                if (table.getSelectedRow() >= 0) {
+                    fillForm();
+                }
+            }
+        });
+
         for (String value : inputs) {
             tableModel.addColumn(value.toString());
         }
@@ -116,7 +106,7 @@ public class EntityPanel extends JPanel {
         return scrollable;
     }
 
-    private void loadTableData(Object[][] tableData) {
+    protected void loadTableData(Object[][] tableData) {
         tableModel.setNumRows(0);
         for (int i = 0; i < tableData.length; i++) {
             tableModel.addRow(tableData[i]);
