@@ -33,7 +33,7 @@ public class ProceduresPanel extends EntityPanel {
     }
 
     protected EntityController getEntityController() {
-        return new EntityController(new ProceduresController());
+        return new ProceduresController();
     }
 
     protected JPanel createForm() {
@@ -78,7 +78,6 @@ public class ProceduresPanel extends EntityPanel {
 
     protected void fillForm() {
         Procedure procedure = (Procedure) getEntityController()
-                .getController()
                 .getPersistent()
                 .getEntities()
                 .get(table.getSelectedRow());

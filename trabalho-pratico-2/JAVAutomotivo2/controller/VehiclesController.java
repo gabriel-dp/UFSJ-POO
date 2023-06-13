@@ -7,7 +7,7 @@ import data.Persistent;
 import model.Entity;
 import model.Vehicle;
 
-public class VehiclesController implements Controller {
+public class VehiclesController extends EntityController {
 
     public Persistent getPersistent() {
         return Data.getInstance().getVehicles();

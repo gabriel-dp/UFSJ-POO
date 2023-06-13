@@ -2,13 +2,10 @@ package controller;
 
 import java.util.ArrayList;
 
-import model.Entity;
-import model.Maintenance;
-import model.Service;
-import data.Data;
-import data.Persistent;
+import model.*;
+import data.*;
 
-public class MaintenancesController implements Controller {
+public class MaintenancesController extends EntityController {
 
     public Persistent getPersistent() {
         return Data.getInstance().getMaintenances();
@@ -31,6 +28,15 @@ public class MaintenancesController implements Controller {
         }
 
         return tableData;
+    }
+
+    public Vehicle[] getVehiclesArray() {
+        ArrayList<Entity> vehiclesList = Data.getInstance()
+                .getVehicles()
+                .getEntities();
+        Vehicle[] vehiclesArray = new Vehicle[vehiclesList.size()];
+        vehiclesArray = vehiclesList.toArray(vehiclesArray);
+        return vehiclesArray;
     }
 
 }

@@ -7,7 +7,7 @@ import data.Persistent;
 import model.Entity;
 import model.Procedure;
 
-public class ProceduresController implements Controller {
+public class ProceduresController extends EntityController {
 
     public Persistent getPersistent() {
         return Data.getInstance().getProcedures();

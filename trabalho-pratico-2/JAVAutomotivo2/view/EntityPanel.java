@@ -56,7 +56,7 @@ public abstract class EntityPanel extends JPanel {
                 try {
                     checkForm();
                     getEntityController().addEntity(createEntity());
-                    loadTableData(getEntityController().getController().getTableData());
+                    loadTableData(getEntityController().getTableData());
 
                     clearForm();
                 } catch (InputException errorInput) {
@@ -76,7 +76,7 @@ public abstract class EntityPanel extends JPanel {
                 int index = table.getSelectedRow();
                 if (index >= 0) {
                     getEntityController().removeEntity(index);
-                    loadTableData(getEntityController().getController().getTableData());
+                    loadTableData(getEntityController().getTableData());
                 }
             }
         });

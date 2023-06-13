@@ -33,7 +33,7 @@ public class VehiclesPanel extends EntityPanel {
     }
 
     protected EntityController getEntityController() {
-        return new EntityController(new VehiclesController());
+        return new VehiclesController();
     }
 
     protected JPanel createForm() {
@@ -79,7 +79,6 @@ public class VehiclesPanel extends EntityPanel {
 
     protected void fillForm() {
         Vehicle vehicle = (Vehicle) getEntityController()
-                .getController()
                 .getPersistent()
                 .getEntities()
                 .get(table.getSelectedRow());
