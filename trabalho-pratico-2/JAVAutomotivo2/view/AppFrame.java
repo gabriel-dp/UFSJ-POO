@@ -19,6 +19,7 @@ public class AppFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setSize(800, 600);
+        setLocationRelativeTo(null);
 
         // Add main panels
         appPanel.add(navPanel, BorderLayout.PAGE_START);

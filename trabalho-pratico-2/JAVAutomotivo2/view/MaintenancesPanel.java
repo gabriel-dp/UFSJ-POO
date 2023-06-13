@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class MaintenancesPanel extends EntityPanel {
 
     private JTextField idTF = new JTextField();
-    private JComboBox<Vehicle> vehiclesComboBox = new JComboBox<Vehicle>();
+    private JComboBox<Object> vehiclesComboBox = new JComboBox<Object>();
     private ArrayList<Service> servicesArrayList = new ArrayList<>();
 
     public MaintenancesPanel() {
@@ -45,14 +45,17 @@ public class MaintenancesPanel extends EntityPanel {
 
         // Create id input
         JPanel idPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        idTF.setPreferredSize(new Dimension(150, 20));
+        idTF.setPreferredSize(new Dimension(200, 20));
         idPanel.add(new JLabel(String.format("%s: ", getInputs()[0])));
         idPanel.add(idTF);
         formPanel.add(idPanel);
 
+        // Create selectors panel
+        JPanel selectorsPanel = new JPanel(new GridLayout(1, 2, 20, 0));
+        selectorsPanel.setPreferredSize(new Dimension(600, 30));
+
         // Create vehicle input
-        JPanel vehiclesPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        final Vehicle optionVehicle = new Vehicle(0, "Modelo", "Placa", "Cliente");
+        final Object optionVehicle = "Selecione um veículo";
         vehiclesComboBox.insertItemAt(optionVehicle, 0);
         vehiclesComboBox.setSelectedIndex(0);
         vehiclesComboBox.addPopupMenuListener(new PopupMenuListener() {
@@ -69,35 +72,33 @@ public class MaintenancesPanel extends EntityPanel {
             public void popupMenuCanceled(PopupMenuEvent e) {
             }
         });
-        vehiclesPanel.add(new JLabel(String.format("%s: ", getInputs()[1])));
-        vehiclesPanel.add(vehiclesComboBox);
-        formPanel.add(vehiclesPanel);
+        selectorsPanel.add(vehiclesComboBox);
 
         // Create servicess input
         JButton servicesButton = new JButton("Editar serviços");
         servicesButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JDialog lockingDialog = new JDialog(SwingUtilities.getWindowAncestor(formPanel));
-                lockingDialog.setSize(600, 300);
-                lockingDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                JDialog servicesMenu = new JDialog(SwingUtilities.getWindowAncestor(formPanel), "Edição de Serviços");
+                servicesMenu.setSize(500, 300);
+                servicesMenu.setModal(true);
+                servicesMenu.setLocationRelativeTo(SwingUtilities.getWindowAncestor(formPanel));
+                servicesMenu.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
                 DefaultTableModel servicesModel = new DefaultTableModel();
                 JTable servicesTable = new JTable(servicesModel);
 
-                servicesModel.addColumn("Procedimento");
                 Procedure[] proceduresArray = ((MaintenancesController) getEntityController()).getProceduresArray();
-                for (Procedure procedimento : proceduresArray) {
-                    servicesModel.addRow(new Object[] { procedimento, 0 });
+                Integer[] quantityArray = new Integer[proceduresArray.length];
+                for (int i = 0; i < quantityArray.length; i++) {
+                    quantityArray[i] = 0;
                 }
+                servicesModel.addColumn("Procedimento", proceduresArray);
+                servicesModel.addColumn("Quantidade", quantityArray);
 
-                servicesModel.addColumn("Quantidade");
-
-                JScrollPane servicesPanel = new JScrollPane();
-                servicesPanel.setPreferredSize(new Dimension(600, 50));
-                servicesPanel.setViewportView(servicesTable);
-
-                lockingDialog.add(servicesPanel);
-                lockingDialog.addWindowListener(new WindowAdapter() {
+                JScrollPane servicesTablePanel = new JScrollPane();
+                servicesTablePanel.setViewportView(servicesTable);
+                servicesMenu.add(servicesTablePanel);
+                servicesMenu.addWindowListener(new WindowAdapter() {
                     public void windowClosing(WindowEvent e) {
                         servicesArrayList.clear();
                         for (int i = 0; i < proceduresArray.length; i++) {
@@ -109,10 +110,12 @@ public class MaintenancesPanel extends EntityPanel {
                     }
                 });
 
-                lockingDialog.setVisible(true);
+                servicesMenu.setVisible(true);
             }
         });
-        formPanel.add(servicesButton);
+        selectorsPanel.add(servicesButton);
+
+        formPanel.add(selectorsPanel);
 
         return formPanel;
     }
@@ -126,9 +129,8 @@ public class MaintenancesPanel extends EntityPanel {
     protected Entity createEntity() throws Exception {
         int maintenanceId = Integer.parseInt(idTF.getText());
         Vehicle vehicle = (Vehicle) vehiclesComboBox.getSelectedItem();
-        ArrayList<Service> services = new ArrayList<>();
 
-        return new Maintenance(maintenanceId, vehicle, services);
+        return new Maintenance(maintenanceId, vehicle, servicesArrayList);
     }
 
     protected void clearForm() {
