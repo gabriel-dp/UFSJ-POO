@@ -1,10 +1,12 @@
 package view;
 
+import model.*;
+import data.Data;
+import factory.Factory;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
-import data.Data;
 
 public class AppFrame extends JFrame {
 
@@ -28,9 +30,9 @@ public class AppFrame extends JFrame {
 
         // Define entity panels
         final EntityPanel[] panels = {
-                new VehiclesPanel(),
-                new ProceduresPanel(),
-                new MaintenancesPanel()
+                Factory.getInstance(Vehicle.class).createPanel(),
+                Factory.getInstance(Procedure.class).createPanel(),
+                Factory.getInstance(Maintenance.class).createPanel(),
         };
 
         // Add all entity panels

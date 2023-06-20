@@ -2,6 +2,7 @@ package view;
 
 import model.*;
 import controller.*;
+import factory.Factory;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -35,7 +36,7 @@ public class MaintenancesPanel extends EntityPanel {
     }
 
     protected EntityController getEntityController() {
-        return new MaintenancesController();
+        return Factory.getInstance(Maintenance.class).createController();
     }
 
     protected JPanel createForm() {
@@ -127,10 +128,10 @@ public class MaintenancesPanel extends EntityPanel {
     }
 
     protected Entity createEntity() throws Exception {
-        int maintenanceId = Integer.parseInt(idTF.getText());
+        int id = Integer.parseInt(idTF.getText());
         Vehicle vehicle = (Vehicle) vehiclesComboBox.getSelectedItem();
 
-        return new Maintenance(maintenanceId, vehicle, servicesArrayList);
+        return Factory.getInstance(Maintenance.class).createEntity(id, vehicle, servicesArrayList.clone());
     }
 
     protected void clearForm() {

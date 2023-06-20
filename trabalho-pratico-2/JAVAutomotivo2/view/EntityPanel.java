@@ -19,11 +19,11 @@ public abstract class EntityPanel extends JPanel {
         };
     };
 
-    protected abstract EntityController getEntityController();
-
     protected abstract String getTitle();
 
     protected abstract String[] getInputs();
+
+    protected abstract EntityController getEntityController();
 
     protected abstract JPanel createForm();
 

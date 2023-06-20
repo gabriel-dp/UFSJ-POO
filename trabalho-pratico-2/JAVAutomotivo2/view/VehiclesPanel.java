@@ -1,10 +1,8 @@
 package view;
 
-import model.Entity;
-import model.Vehicle;
-import controller.EntityController;
-import controller.VehiclesController;
-import controller.InputException;
+import model.*;
+import controller.*;
+import factory.Factory;
 
 import java.awt.*;
 import javax.swing.*;
@@ -33,7 +31,7 @@ public class VehiclesPanel extends EntityPanel {
     }
 
     protected EntityController getEntityController() {
-        return new VehiclesController();
+        return Factory.getInstance(Vehicle.class).createController();
     }
 
     protected JPanel createForm() {
@@ -68,7 +66,7 @@ public class VehiclesPanel extends EntityPanel {
         String plate = textFields[2].getText();
         String client = textFields[3].getText();
 
-        return new Vehicle(id, model, plate, client);
+        return Factory.getInstance(Vehicle.class).createEntity(id, model, plate, client);
     }
 
     protected void clearForm() {
