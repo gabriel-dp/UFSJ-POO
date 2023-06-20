@@ -9,7 +9,7 @@ import javax.swing.*;
 
 public class VehiclesPanel extends EntityPanel {
 
-    JTextField[] textFields;
+    private JTextField[] textFields;
 
     public VehiclesPanel() {
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 10));
