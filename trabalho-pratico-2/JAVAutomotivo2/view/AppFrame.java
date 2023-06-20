@@ -1,7 +1,6 @@
 package view;
 
 import model.*;
-import data.Data;
 import factory.Factory;
 
 import java.awt.*;
@@ -15,7 +14,7 @@ public class AppFrame extends JFrame {
     private CardLayout mainLayout = new CardLayout();
     private JPanel mainPanel = new JPanel(mainLayout);
 
-    public AppFrame(Data data) {
+    public AppFrame() {
         // Default settings
         setTitle("JAVAutomotivo 2");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
