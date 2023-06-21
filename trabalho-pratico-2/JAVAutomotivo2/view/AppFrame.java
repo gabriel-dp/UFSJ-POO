@@ -9,6 +9,13 @@ import javax.swing.*;
 
 public class AppFrame extends JFrame {
 
+    // Define entity panels
+    private final EntityPanel[] panels = {
+            Factory.getInstance(Vehicle.class).createPanel(),
+            Factory.getInstance(Procedure.class).createPanel(),
+            Factory.getInstance(Maintenance.class).createPanel(),
+    };
+
     private JPanel appPanel = new JPanel(new BorderLayout());
     private JPanel navPanel = new JPanel(new GridLayout(1, 3));
     private CardLayout mainLayout = new CardLayout();
@@ -27,19 +34,13 @@ public class AppFrame extends JFrame {
         appPanel.add(mainPanel, BorderLayout.CENTER);
         this.add(appPanel);
 
-        // Define entity panels
-        final EntityPanel[] panels = {
-                Factory.getInstance(Vehicle.class).createPanel(),
-                Factory.getInstance(Procedure.class).createPanel(),
-                Factory.getInstance(Maintenance.class).createPanel(),
-        };
-
         // Add all entity panels
         for (EntityPanel panel : panels) {
             navPanel.add(createMainButton(panel.getTitle()));
             mainPanel.add(panel, panel.getTitle());
         }
 
+        // Make the frame visible
         setVisible(true);
     }
 
