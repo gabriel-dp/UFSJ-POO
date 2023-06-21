@@ -2,8 +2,8 @@ package controller;
 
 import java.util.ArrayList;
 
-import model.*;
 import data.*;
+import model.*;
 
 public class MaintenancesController extends EntityController<Maintenance> {
 

@@ -2,8 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 
-import data.Data;
-import data.Persistent;
+import data.*;
 import model.Procedure;
 
 public class ProceduresController extends EntityController<Procedure> {
