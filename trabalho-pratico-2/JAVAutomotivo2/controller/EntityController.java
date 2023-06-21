@@ -1,18 +1,17 @@
 package controller;
 
 import model.Entity;
+import data.Persistent;
 
-import data.*;
+public abstract class EntityController<T extends Entity> {
 
-public abstract class EntityController {
-
-    public abstract Persistent getPersistent();
+    public abstract Persistent<T> getPersistent();
 
     public abstract Object[][] getTableData();
 
-    public void addEntity(Entity entity) {
+    public void addEntity(T entity) {
         try {
-            Entity old = getPersistent().searchId(entity.getId());
+            T old = getPersistent().searchId(entity.getId());
             getPersistent().modify(old, entity);
         } catch (IdException e) {
             // Creates new Entity if not found id
@@ -21,8 +20,12 @@ public abstract class EntityController {
     }
 
     public void removeEntity(int index) {
-        Entity entity = getPersistent().getEntities().get(index);
+        T entity = getPersistent().getEntities().get(index);
         getPersistent().remove(entity);
     }
 
+    public T getEntity(int index) {
+        T entity = getPersistent().getEntities().get(index);
+        return entity;
+    }
 }

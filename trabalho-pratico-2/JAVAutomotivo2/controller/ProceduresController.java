@@ -4,21 +4,20 @@ import java.util.ArrayList;
 
 import data.Data;
 import data.Persistent;
-import model.Entity;
 import model.Procedure;
 
-public class ProceduresController extends EntityController {
+public class ProceduresController extends EntityController<Procedure> {
 
-    public Persistent getPersistent() {
+    public Persistent<Procedure> getPersistent() {
         return Data.getInstance().getProcedures();
     }
 
     public Object[][] getTableData() {
-        ArrayList<Entity> list = Data.getInstance().getProcedures().getEntities();
+        ArrayList<Procedure> list = getPersistent().getEntities();
         Object[][] tableData = new Object[list.size()][3];
 
         for (int i = 0; i < list.size(); i++) {
-            Procedure procedure = (Procedure) list.get(i);
+            Procedure procedure = list.get(i);
             tableData[i][0] = procedure.getId();
             tableData[i][1] = procedure.getProcedureName();
             tableData[i][2] = procedure.getValue();

@@ -1,20 +1,20 @@
 package factory;
 
-import model.*;
 import view.*;
 import controller.*;
+import model.Vehicle;
 
-public class VehiclesFactory extends EntityFactory {
+public class VehiclesFactory extends EntityFactory<Vehicle> {
 
-    public Entity createEntity(int id, Object... args) {
+    public Vehicle createEntity(int id, Object... args) {
         return new Vehicle(id, (String) args[0], (String) args[1], (String) args[2]);
     }
 
-    public EntityPanel createPanel() {
+    public EntityPanel<Vehicle> createPanel() {
         return new VehiclesPanel();
     }
 
-    public EntityController createController() {
+    public EntityController<Vehicle> createController() {
         return new VehiclesController();
     }
 

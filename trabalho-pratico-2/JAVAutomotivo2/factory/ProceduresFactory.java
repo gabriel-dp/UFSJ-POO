@@ -1,20 +1,20 @@
 package factory;
 
-import model.*;
 import view.*;
 import controller.*;
+import model.Procedure;
 
-public class ProceduresFactory extends EntityFactory {
+public class ProceduresFactory extends EntityFactory<Procedure> {
 
-    public Entity createEntity(int id, Object... args) {
+    public Procedure createEntity(int id, Object... args) {
         return new Procedure(id, (String) args[0], (double) args[1]);
     }
 
-    public EntityPanel createPanel() {
+    public EntityPanel<Procedure> createPanel() {
         return new ProceduresPanel();
     }
 
-    public EntityController createController() {
+    public EntityController<Procedure> createController() {
         return new ProceduresController();
     }
 

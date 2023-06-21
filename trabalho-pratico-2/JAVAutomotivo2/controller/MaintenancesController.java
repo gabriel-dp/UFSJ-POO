@@ -5,18 +5,18 @@ import java.util.ArrayList;
 import model.*;
 import data.*;
 
-public class MaintenancesController extends EntityController {
+public class MaintenancesController extends EntityController<Maintenance> {
 
-    public Persistent getPersistent() {
+    public Persistent<Maintenance> getPersistent() {
         return Data.getInstance().getMaintenances();
     }
 
     public Object[][] getTableData() {
-        ArrayList<Entity> list = Data.getInstance().getMaintenances().getEntities();
+        ArrayList<Maintenance> list = getPersistent().getEntities();
         Object[][] tableData = new Object[list.size()][3];
 
         for (int i = 0; i < list.size(); i++) {
-            Maintenance Maintenance = (Maintenance) list.get(i);
+            Maintenance Maintenance = list.get(i);
             tableData[i][0] = Maintenance.getId();
             tableData[i][1] = Maintenance.getVehicle().getId();
 
@@ -31,7 +31,7 @@ public class MaintenancesController extends EntityController {
     }
 
     public Vehicle[] getVehiclesArray() {
-        ArrayList<Entity> vehiclesList = Data.getInstance()
+        ArrayList<Vehicle> vehiclesList = Data.getInstance()
                 .getVehicles()
                 .getEntities();
         Vehicle[] vehiclesArray = new Vehicle[vehiclesList.size()];
@@ -40,7 +40,7 @@ public class MaintenancesController extends EntityController {
     }
 
     public Procedure[] getProceduresArray() {
-        ArrayList<Entity> proceduresList = Data.getInstance()
+        ArrayList<Procedure> proceduresList = Data.getInstance()
                 .getProcedures()
                 .getEntities();
         Procedure[] proceduresArray = new Procedure[proceduresList.size()];

@@ -7,7 +7,7 @@ import factory.EntityFactory;
 import java.awt.*;
 import javax.swing.*;
 
-public class VehiclesPanel extends EntityPanel {
+public class VehiclesPanel extends EntityPanel<Vehicle> {
 
     private JTextField[] textFields;
 
@@ -19,7 +19,7 @@ public class VehiclesPanel extends EntityPanel {
         this.add(createTitle());
         this.add(createForm());
         this.add(createButtons());
-        this.add(createScrollableTable(getInputs()));
+        this.add(createScrollableTable());
     }
 
     protected String getTitle() {
@@ -30,7 +30,7 @@ public class VehiclesPanel extends EntityPanel {
         return new String[] { "Id", "Modelo", "Placa", "Cliente" };
     }
 
-    protected EntityController getEntityController() {
+    protected EntityController<Vehicle> getEntityController() {
         return EntityFactory.getFactory(Vehicle.class).createController();
     }
 
@@ -60,7 +60,7 @@ public class VehiclesPanel extends EntityPanel {
         }
     }
 
-    protected Entity createEntity() throws NumberFormatException {
+    protected Vehicle createEntity() throws NumberFormatException {
         int id = Integer.parseInt(textFields[0].getText());
         String model = textFields[1].getText();
         String plate = textFields[2].getText();
@@ -76,10 +76,7 @@ public class VehiclesPanel extends EntityPanel {
     }
 
     protected void fillForm() {
-        Vehicle vehicle = (Vehicle) getEntityController()
-                .getPersistent()
-                .getEntities()
-                .get(table.getSelectedRow());
+        Vehicle vehicle = getEntityController().getEntity(table.getSelectedRow());
 
         textFields[0].setText(String.valueOf(vehicle.getId()));
         textFields[1].setText(vehicle.getModel());

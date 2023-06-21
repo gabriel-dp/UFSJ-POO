@@ -4,24 +4,25 @@ import model.*;
 import view.EntityPanel;
 import controller.EntityController;
 
-public abstract class EntityFactory {
+public abstract class EntityFactory<T extends Entity> {
 
-    public static <T> EntityFactory getFactory(Class<T> typeClass) {
+    @SuppressWarnings("unchecked")
+    public static <E extends Entity> EntityFactory<E> getFactory(Class<E> typeClass) {
         if (typeClass == Vehicle.class) {
-            return new VehiclesFactory();
+            return (EntityFactory<E>) new VehiclesFactory();
         } else if (typeClass == Procedure.class) {
-            return new ProceduresFactory();
+            return (EntityFactory<E>) new ProceduresFactory();
         } else if (typeClass == Maintenance.class) {
-            return new MaintenancesFactory();
+            return (EntityFactory<E>) new MaintenancesFactory();
         } else {
             return null;
         }
     }
 
-    public abstract Entity createEntity(int id, Object... args);
+    public abstract T createEntity(int id, Object... args);
 
-    public abstract EntityPanel createPanel();
+    public abstract EntityPanel<T> createPanel();
 
-    public abstract EntityController createController();
+    public abstract EntityController<T> createController();
 
 }

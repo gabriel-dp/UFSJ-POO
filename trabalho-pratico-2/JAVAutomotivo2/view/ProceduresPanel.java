@@ -7,7 +7,7 @@ import factory.EntityFactory;
 import java.awt.*;
 import javax.swing.*;
 
-public class ProceduresPanel extends EntityPanel {
+public class ProceduresPanel extends EntityPanel<Procedure> {
 
     private JTextField[] textFields;
 
@@ -19,7 +19,7 @@ public class ProceduresPanel extends EntityPanel {
         this.add(createTitle());
         this.add(createForm());
         this.add(createButtons());
-        this.add(createScrollableTable(getInputs()));
+        this.add(createScrollableTable());
     }
 
     protected String getTitle() {
@@ -30,7 +30,7 @@ public class ProceduresPanel extends EntityPanel {
         return new String[] { "Id", "Nome", "Valor" };
     }
 
-    protected EntityController getEntityController() {
+    protected EntityController<Procedure> getEntityController() {
         return EntityFactory.getFactory(Procedure.class).createController();
     }
 
@@ -60,7 +60,7 @@ public class ProceduresPanel extends EntityPanel {
         }
     }
 
-    protected Entity createEntity() throws NumberFormatException {
+    protected Procedure createEntity() throws NumberFormatException {
         int id = Integer.parseInt(textFields[0].getText());
         String name = textFields[1].getText();
         double value = Double.parseDouble(textFields[2].getText());
@@ -75,10 +75,7 @@ public class ProceduresPanel extends EntityPanel {
     }
 
     protected void fillForm() {
-        Procedure procedure = (Procedure) getEntityController()
-                .getPersistent()
-                .getEntities()
-                .get(table.getSelectedRow());
+        Procedure procedure = getEntityController().getEntity(table.getSelectedRow());
 
         textFields[0].setText(String.valueOf(procedure.getId()));
         textFields[1].setText(procedure.getProcedureName());

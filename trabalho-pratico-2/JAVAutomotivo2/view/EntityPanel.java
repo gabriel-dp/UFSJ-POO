@@ -10,7 +10,7 @@ import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.table.*;
 
-public abstract class EntityPanel extends JPanel {
+public abstract class EntityPanel<T extends Entity> extends JPanel {
 
     protected DefaultTableModel tableModel = new DefaultTableModel();
     protected JTable table = new JTable(tableModel) {
@@ -23,13 +23,13 @@ public abstract class EntityPanel extends JPanel {
 
     protected abstract String[] getInputs();
 
-    protected abstract EntityController getEntityController();
+    protected abstract EntityController<T> getEntityController();
 
     protected abstract JPanel createForm();
 
     protected abstract void checkForm() throws Exception;
 
-    protected abstract Entity createEntity() throws Exception;
+    protected abstract T createEntity() throws Exception;
 
     protected abstract void clearForm();
 
@@ -85,7 +85,7 @@ public abstract class EntityPanel extends JPanel {
         return buttonsPanel;
     }
 
-    protected JScrollPane createScrollableTable(String[] inputs) {
+    protected JScrollPane createScrollableTable() {
         table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent event) {
                 if (table.getSelectedRow() >= 0) {
@@ -94,7 +94,7 @@ public abstract class EntityPanel extends JPanel {
             }
         });
 
-        for (String value : inputs) {
+        for (String value : getInputs()) {
             tableModel.addColumn(value.toString());
         }
         table.getTableHeader().setReorderingAllowed(false);

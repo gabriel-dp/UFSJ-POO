@@ -10,7 +10,7 @@ import javax.swing.*;
 public class AppFrame extends JFrame {
 
     // Define entity panels
-    private final EntityPanel[] panels = {
+    private final EntityPanel<?>[] panels = {
             EntityFactory.getFactory(Vehicle.class).createPanel(),
             EntityFactory.getFactory(Procedure.class).createPanel(),
             EntityFactory.getFactory(Maintenance.class).createPanel(),
@@ -35,7 +35,7 @@ public class AppFrame extends JFrame {
         this.add(appPanel);
 
         // Add all entity panels
-        for (EntityPanel panel : panels) {
+        for (EntityPanel<?> panel : panels) {
             navPanel.add(createMainButton(panel.getTitle()));
             mainPanel.add(panel, panel.getTitle());
         }

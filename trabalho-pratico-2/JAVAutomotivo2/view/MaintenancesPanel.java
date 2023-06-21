@@ -12,7 +12,7 @@ import javax.swing.table.*;
 
 import java.util.ArrayList;
 
-public class MaintenancesPanel extends EntityPanel {
+public class MaintenancesPanel extends EntityPanel<Maintenance> {
 
     private JTextField idTF = new JTextField();
     private JComboBox<Object> vehiclesComboBox = new JComboBox<Object>();
@@ -24,7 +24,7 @@ public class MaintenancesPanel extends EntityPanel {
         this.add(createTitle());
         this.add(createForm());
         this.add(createButtons());
-        this.add(createScrollableTable(getInputs()));
+        this.add(createScrollableTable());
     }
 
     protected String getTitle() {
@@ -35,7 +35,7 @@ public class MaintenancesPanel extends EntityPanel {
         return new String[] { "Id", "Veículo", "Serviços" };
     }
 
-    protected EntityController getEntityController() {
+    protected EntityController<Maintenance> getEntityController() {
         return EntityFactory.getFactory(Maintenance.class).createController();
     }
 
@@ -82,15 +82,18 @@ public class MaintenancesPanel extends EntityPanel {
         JButton servicesButton = new JButton("Editar serviços");
         servicesButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                // Creates dialog window
                 JDialog servicesMenu = new JDialog(SwingUtilities.getWindowAncestor(formPanel), "Edição de Serviços");
                 servicesMenu.setSize(500, 300);
                 servicesMenu.setModal(true);
                 servicesMenu.setLocationRelativeTo(SwingUtilities.getWindowAncestor(formPanel));
                 servicesMenu.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
+                // Creates servicesTable
                 DefaultTableModel servicesModel = new DefaultTableModel();
                 JTable servicesTable = new JTable(servicesModel);
 
+                // Add data to servicesTable
                 Procedure[] proceduresArray = ((MaintenancesController) getEntityController()).getProceduresArray();
                 Integer[] quantityArray = new Integer[proceduresArray.length];
                 for (int i = 0; i < quantityArray.length; i++) {
@@ -99,10 +102,12 @@ public class MaintenancesPanel extends EntityPanel {
                 servicesModel.addColumn("Procedimento", proceduresArray);
                 servicesModel.addColumn("Quantidade", quantityArray);
 
+                // Controls services edition
                 JScrollPane servicesTablePanel = new JScrollPane();
                 servicesTablePanel.setViewportView(servicesTable);
                 servicesMenu.add(servicesTablePanel);
                 servicesMenu.addWindowListener(new WindowAdapter() {
+                    // Data is saved when close window
                     public void windowClosing(WindowEvent e) {
                         for (int i = 0; i < proceduresArray.length; i++) {
                             Service service;
@@ -127,7 +132,7 @@ public class MaintenancesPanel extends EntityPanel {
         }
     }
 
-    protected Entity createEntity() throws Exception {
+    protected Maintenance createEntity() throws Exception {
         int id = Integer.parseInt(idTF.getText());
         Vehicle vehicle = (Vehicle) vehiclesComboBox.getSelectedItem();
 
@@ -141,10 +146,7 @@ public class MaintenancesPanel extends EntityPanel {
     }
 
     protected void fillForm() {
-        Maintenance maintenance = (Maintenance) getEntityController()
-                .getPersistent()
-                .getEntities()
-                .get(table.getSelectedRow());
+        Maintenance maintenance = getEntityController().getEntity(table.getSelectedRow());
 
         idTF.setText(String.valueOf(maintenance.getId()));
     }

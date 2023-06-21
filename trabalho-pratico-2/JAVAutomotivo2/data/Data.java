@@ -1,5 +1,7 @@
 package data;
 
+import model.*;
+
 /*
  * Singleton Design Pattern - Eager Initialization
  * Controls Data instance to have only one Data
@@ -9,29 +11,23 @@ public class Data {
 
     private static final Data data = new Data();
 
-    private Persistent vehicles;
-    private Persistent procedures;
-    private Persistent maintenances;
-
-    private Data() {
-        this.vehicles = new Persistent();
-        this.procedures = new Persistent();
-        this.maintenances = new Persistent();
-    }
+    private Persistent<Vehicle> vehicles = new Persistent<>();
+    private Persistent<Procedure> procedures = new Persistent<>();
+    private Persistent<Maintenance> maintenances = new Persistent<>();
 
     public static Data getInstance() {
         return data;
     }
 
-    public Persistent getVehicles() {
+    public Persistent<Vehicle> getVehicles() {
         return this.vehicles;
     }
 
-    public Persistent getProcedures() {
+    public Persistent<Procedure> getProcedures() {
         return this.procedures;
     }
 
-    public Persistent getMaintenances() {
+    public Persistent<Maintenance> getMaintenances() {
         return this.maintenances;
     }
 
