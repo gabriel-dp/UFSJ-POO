@@ -2,7 +2,7 @@ package view;
 
 import model.*;
 import controller.*;
-import factory.*;
+import factory.EntityFactory;
 
 import java.awt.*;
 import javax.swing.*;
@@ -31,7 +31,7 @@ public class ProceduresPanel extends EntityPanel {
     }
 
     protected EntityController getEntityController() {
-        return Factory.getInstance(Procedure.class).createController();
+        return EntityFactory.getFactory(Procedure.class).createController();
     }
 
     protected JPanel createForm() {
@@ -65,7 +65,7 @@ public class ProceduresPanel extends EntityPanel {
         String name = textFields[1].getText();
         double value = Double.parseDouble(textFields[2].getText());
 
-        return Factory.getInstance(Procedure.class).createEntity(id, name, value);
+        return EntityFactory.getFactory(Procedure.class).createEntity(id, name, value);
     }
 
     protected void clearForm() {

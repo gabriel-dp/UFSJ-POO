@@ -1,7 +1,7 @@
 package view;
 
 import model.*;
-import factory.Factory;
+import factory.EntityFactory;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -11,9 +11,9 @@ public class AppFrame extends JFrame {
 
     // Define entity panels
     private final EntityPanel[] panels = {
-            Factory.getInstance(Vehicle.class).createPanel(),
-            Factory.getInstance(Procedure.class).createPanel(),
-            Factory.getInstance(Maintenance.class).createPanel(),
+            EntityFactory.getFactory(Vehicle.class).createPanel(),
+            EntityFactory.getFactory(Procedure.class).createPanel(),
+            EntityFactory.getFactory(Maintenance.class).createPanel(),
     };
 
     private JPanel appPanel = new JPanel(new BorderLayout());

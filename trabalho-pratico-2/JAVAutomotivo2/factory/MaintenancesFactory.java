@@ -6,7 +6,7 @@ import controller.*;
 
 import java.util.ArrayList;
 
-public class MaintenancesFactory extends AbstractFactory {
+public class MaintenancesFactory extends EntityFactory {
 
     @SuppressWarnings("unchecked") // Supress ArrayList casting warning
     public Entity createEntity(int id, Object... args) {

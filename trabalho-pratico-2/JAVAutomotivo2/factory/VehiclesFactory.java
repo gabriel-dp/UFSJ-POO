@@ -4,7 +4,7 @@ import model.*;
 import view.*;
 import controller.*;
 
-public class VehiclesFactory extends AbstractFactory {
+public class VehiclesFactory extends EntityFactory {
 
     public Entity createEntity(int id, Object... args) {
         return new Vehicle(id, (String) args[0], (String) args[1], (String) args[2]);

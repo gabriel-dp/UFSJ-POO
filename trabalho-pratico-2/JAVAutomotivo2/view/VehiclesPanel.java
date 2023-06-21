@@ -2,7 +2,7 @@ package view;
 
 import model.*;
 import controller.*;
-import factory.Factory;
+import factory.EntityFactory;
 
 import java.awt.*;
 import javax.swing.*;
@@ -31,7 +31,7 @@ public class VehiclesPanel extends EntityPanel {
     }
 
     protected EntityController getEntityController() {
-        return Factory.getInstance(Vehicle.class).createController();
+        return EntityFactory.getFactory(Vehicle.class).createController();
     }
 
     protected JPanel createForm() {
@@ -66,7 +66,7 @@ public class VehiclesPanel extends EntityPanel {
         String plate = textFields[2].getText();
         String client = textFields[3].getText();
 
-        return Factory.getInstance(Vehicle.class).createEntity(id, model, plate, client);
+        return EntityFactory.getFactory(Vehicle.class).createEntity(id, model, plate, client);
     }
 
     protected void clearForm() {
