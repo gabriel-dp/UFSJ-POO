@@ -35,8 +35,10 @@ public class ProceduresPanel extends EntityPanel<Procedure> {
     }
 
     protected JPanel createForm() {
+        // Creates formPanel
         JPanel formPanel = new JPanel(new GridLayout(2, (int) Math.ceil(getInputs().length / 2), 10, 0));
 
+        // Creates a subpanel for each input field
         for (int i = 0; i < getInputs().length; i++) {
             JPanel subpanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
             JTextField tf = new JTextField();

@@ -19,12 +19,7 @@ public class MaintenancesController extends EntityController<Maintenance> {
             Maintenance Maintenance = list.get(i);
             tableData[i][0] = Maintenance.getId();
             tableData[i][1] = Maintenance.getVehicle().getId();
-
-            double total = 0;
-            for (Service service : Maintenance.getServices()) {
-                total += service.getProcedure().getValue() * service.getQuantity();
-            }
-            tableData[i][2] = total;
+            tableData[i][2] = Maintenance.getTotalValue();
         }
 
         return tableData;

@@ -21,4 +21,12 @@ public class Maintenance extends Entity {
         return this.services;
     }
 
+    public double getTotalValue() {
+        double total = 0;
+        for (Service service : getServices()) {
+            total += service.getProcedure().getValue() * service.getQuantity();
+        }
+        return total;
+    }
+
 }

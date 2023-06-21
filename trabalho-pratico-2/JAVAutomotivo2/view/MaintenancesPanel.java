@@ -40,11 +40,12 @@ public class MaintenancesPanel extends EntityPanel<Maintenance> {
     }
 
     protected JPanel createForm() {
+        // Creates formPanel
         JPanel formPanel = new JPanel();
         formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
         formPanel.setAlignmentY(Component.CENTER_ALIGNMENT);
 
-        // Create id input
+        // Creates id input
         JPanel idPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         idTF.setPreferredSize(new Dimension(200, 20));
         idPanel.add(new JLabel(String.format("%s: ", getInputs()[0])));
@@ -53,12 +54,12 @@ public class MaintenancesPanel extends EntityPanel<Maintenance> {
 
         formPanel.add(Box.createVerticalStrut(5));
 
-        // Create selectors panel to vehicle and services
+        // Creates selectors panel to vehicle and services
         JPanel selectorsPanel = new JPanel(new GridLayout(1, 2, 20, 0));
         selectorsPanel.setPreferredSize(new Dimension(600, 25));
         formPanel.add(selectorsPanel);
 
-        // Create vehicle input
+        // Creates vehicle input
         final Object optionVehicle = "Selecione um veículo";
         vehiclesComboBox.insertItemAt(optionVehicle, 0);
         vehiclesComboBox.setSelectedIndex(0);
@@ -78,7 +79,7 @@ public class MaintenancesPanel extends EntityPanel<Maintenance> {
         });
         selectorsPanel.add(vehiclesComboBox);
 
-        // Create services input
+        // Creates services input
         JButton servicesButton = new JButton("Editar serviços");
         servicesButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
