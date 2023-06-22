@@ -1,7 +1,7 @@
 package controller;
 
 import model.Entity;
-import data.Persistent;
+import data.*;
 
 public abstract class EntityController<T extends Entity> {
 

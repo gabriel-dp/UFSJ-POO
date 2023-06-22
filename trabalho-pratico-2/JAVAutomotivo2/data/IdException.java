@@ -1,4 +1,4 @@
-package controller;
+package data;
 
 public class IdException extends Exception {
 

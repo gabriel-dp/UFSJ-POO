@@ -1,7 +1,6 @@
 package data;
 
 import model.Entity;
-import controller.IdException;
 
 import java.util.ArrayList;
 
