@@ -11,3 +11,4 @@ All exercise lists, practical works and random codes created for better Java lea
 ## Practical works
 
 - [Trabalho Prático 1](./trabalho-pratico-1)
+- [Trabalho Prático 2](./trabalho-pratico-2)
